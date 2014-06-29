@@ -1,0 +1,35 @@
+{
+    "name": "algorithms.coffee",
+    "version": "0.1.0",
+    "description":
+        "Classic algorithms and data structures in coffeescript. Making the World a better place, with coffee.",
+    "directories": {
+        "test": "test"
+    },
+    "main": "algorithms",
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "latest",
+        "grunt-contrib-clean": "latest",
+        "mocha": "latest",
+        "chai": "latest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BrunoRB/algorithms.coffee.git"
+    },
+    "keywords": [
+        "algorithms",
+        "data structures"
+        "coffeescript",
+    ],
+    "author": "Bruno Roberto Búrigo <brunorb8@hotmail.com>",
+    "contributors" : [
+        "Tayllan Búrigo <tayllanburigo@gmail.com>"
+    ],
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/BrunoRB/algorithms.coffee/issues"
+    },
+    "homepage": "https://github.com/BrunoRB/algorithms.coffee"
+}

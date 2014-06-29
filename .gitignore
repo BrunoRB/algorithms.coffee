@@ -1,0 +1,12 @@
+
+src/*.js
+src/data-structures/*.js
+src/sorting/*.js
+src/dynamic-programming/*.js
+test/*.js
+
+node_modules/
+nbproject/
+.project/
+.settings/
+build/
