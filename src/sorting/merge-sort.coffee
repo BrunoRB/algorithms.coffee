@@ -1,3 +1,4 @@
+### @author Bruno Roberto Búrigo 2014 ###
 
 mergeSort = (array) ->
 
