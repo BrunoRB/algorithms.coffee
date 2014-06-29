@@ -1,11 +1,20 @@
 ### @author Bruno Roberto Búrigo 2014 ###
 
 class BinarySearchTree
-    @root = null
+    @root = null # Node
     @size = 0
 
-    constructor: (root) ->
-        @root = root
+    constructor: (value) ->
+        @root = new Node(value)
+
+    insert: (value) ->
+        
+
+    delete: (value) ->
+        ''
+
+    _find = () ->
+        ''
 
 class Node
     @left = null
@@ -13,17 +22,9 @@ class Node
     @parent = null
     @value = null
 
-    insert: (value) ->
-        if value >= @value
-
-        else !=
-
-
-    delete: (value) ->
-        ''
-
-    _find = () ->
-        ''
+    constructor: (value, parent = null) ->
+        @value = value
+        @parent = parent
 
 try
     module.exports = BinarySearchTree

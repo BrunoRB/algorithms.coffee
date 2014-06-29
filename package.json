@@ -12,7 +12,8 @@
         "grunt": "latest",
         "grunt-contrib-clean": "latest",
         "mocha": "latest",
-        "chai": "latest"
+        "chai": "latest",
+        "grunt-mocha-test": "latest"
     },
     "repository": {
         "type": "git",
@@ -20,8 +21,8 @@
     },
     "keywords": [
         "algorithms",
-        "data structures"
-        "coffeescript",
+        "data structures",
+        "coffeescript"
     ],
     "author": "Bruno Roberto Búrigo <brunorb8@hotmail.com>",
     "contributors" : [
