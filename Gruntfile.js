@@ -3,24 +3,27 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		mocha: {
+		mochaTest: {
             test: {
-                files: ['test/**/*.coffee'],
                 options: {
-                    reporter: 'Nyan',
-                }
+                    reporter: 'spec',
+                },
+                require: [
+                    'coffee-script/register'
+                ],
+                src: ['./test/**/*.coffee']
             }
         }
     });
-
-    grunt.loadNpmTasks('grunt-mocha');
 
     // Default task(s).
     grunt.registerTask(
         'default',
         [
-			'mocha'
+			'mochaTest'
         ]
     );
+
+    grunt.loadNpmTasks('grunt-mocha-test');
 
 };
