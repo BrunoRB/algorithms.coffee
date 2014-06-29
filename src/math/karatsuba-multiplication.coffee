@@ -1,21 +1,21 @@
 ### @author Tayllan Búrigo 2014 ###
 
-amountOfDigits = (number) ->
-    return 1 if number is 0
-
-    counter = 0
-
-    while parseInt(number) > 0
-        number /= 10
-        counter += 1
-
-    while parseInt(number) < 0
-        number /= 10
-        counter += 1
-
-    return counter
-
 karatsubaMultiplication = (numberA, numberB) ->
+    amountOfDigits = (number) ->
+        return 1 if number is 0
+
+        counter = 0
+
+        while parseInt(number) > 0
+            number /= 10
+            counter += 1
+
+        while parseInt(number) < 0
+            number /= 10
+            counter += 1
+
+        return counter
+
     amountOfDigitsInA = amountOfDigits(numberA)
     amountOfDigitsInB = amountOfDigits(numberB)
     base = parseInt(10 ** (if amountOfDigitsInA <= amountOfDigitsInB then amountOfDigitsInA else amountOfDigitsInB) - 1)
