@@ -1,0 +1,16 @@
+{
+    "indentation": {
+        "level": "error",
+        "value": 4
+    },
+    "max_line_length": {
+        "level": "error",
+        "value": 120
+    },
+    "no_plusplus": {
+        "level": "error"
+    },
+    "space_operators": {
+        "level": "error"
+    }
+}

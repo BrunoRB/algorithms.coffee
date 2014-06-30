@@ -2,13 +2,13 @@ var exception;
 
 try {
   module.exports = {
-    insertionSort: require('./src/sorting/insertion-sort'),
-    radixSort: require('./src/sorting/radix-sort'),
-    mergeSort: require('./src/sorting/merge-sort'),
-    karatsubaMultiplication: require('./src/math/karatsuba-multiplication'),
-    bellmanFord: require('./src/graph/bellman-ford'),
-    BinarySearchTree: require('./src/data-structures/binary-search-tree'),
-    AdjacencyList: require('./src/data-structures/adjacency-list')
+    insertionSort: require('./build/sorting/insertion-sort'),
+    radixSort: require('./build/sorting/radix-sort'),
+    mergeSort: require('./build/sorting/merge-sort'),
+    karatsubaMultiplication: require('./build/math/karatsuba-multiplication'),
+    bellmanFord: require('./build/graph/bellman-ford'),
+    BinarySearchTree: require('./build/data-structures/binary-search-tree'),
+    AdjacencyList: require('./build/data-structures/adjacency-list')
   };
 } catch (_error) {
   exception = _error;

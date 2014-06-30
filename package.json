@@ -10,10 +10,17 @@
     "dependencies": {},
     "devDependencies": {
         "grunt": "latest",
+        "grunt-cli": "latest",
         "grunt-contrib-clean": "latest",
         "mocha": "latest",
         "chai": "latest",
-        "grunt-mocha-test": "latest"
+        "grunt-mocha-test": "latest",
+        "grunt-mkdir": "latest",
+        "grunt-contrib-coffee": "latest",
+        "grunt-coffeelint": "latest"
+    },
+    "scripts": {
+        "test": "grunt --verbose"
     },
     "repository": {
         "type": "git",
