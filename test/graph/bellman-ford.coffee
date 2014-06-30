@@ -25,7 +25,7 @@ describe 'Bellman-Ford', ->
             assert.strictEqual(shortestPaths['d'], -2, 'The distance to get to A from D is -2')
             assert.strictEqual(shortestPaths['e'], 1, 'The distance to get to A from E is 1')
             
-        it 'should create a Negative-weighted Cycle, and get a empty Object has the distances', ->
+        it 'should create a Negative-weighted Cycle, and get a empty Object as the distances', ->
             directedGraph.addEdge('c', 'a', -9)
             
             shortestPaths = bellmanFord(directedGraph, 'a').distance
@@ -47,7 +47,7 @@ describe 'Bellman-Ford', ->
             assert.strictEqual(shortestPaths['b'], 9, 'The distance to get to A from B is 9')
             assert.strictEqual(shortestPaths['c'], 1, 'The distance to get to A from C is 1')
             
-        it 'should create a Negative-weighted Cycle, and get a empty Object has the distances', ->
+        it 'should create a Negative-weighted Cycle, and get a empty Object as the distances', ->
             undirectedGraph.addEdge('a', 'c', -666)
             
             shortestPaths = bellmanFord(undirectedGraph, 'a').distance
