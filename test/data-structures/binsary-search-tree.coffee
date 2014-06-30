@@ -60,8 +60,8 @@ describe 'Binary Search Tree', ->
             expect(bst.root.right.root.right.root.value).to.be.equal 30
 
     describe 'Delete nodes off a BST', ->
-            it 'should properly remove nodes of the bst', ->
-                bst = new BinarySearchTree 10
-                bstTwo = bst.insert(20)
-                bstThree = bst.insert(5)
-                bstFour = bst.insert(30)
+        it 'should properly remove nodes of the bst', ->
+            bst = new BinarySearchTree 10
+            bstTwo = bst.insert(20)
+            bstThree = bst.insert(5)
+            bstFour = bst.insert(30)
