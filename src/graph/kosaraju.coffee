@@ -1,11 +1,11 @@
 ### @author Tayllan Búrigo 2014 ###
 
 if typeof module isnt 'undefined'
-    depthFirstSearch = require('./depth-first-search').algCoffe.depthFirstSearch
-    AdjacencyList = require('./../data-structures/adjacency-list').algCoffe.AdjacencyList
+    depthFirstSearch = require('./depth-first-search').algCoffee.depthFirstSearch
+    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList
 else
-    depthFirstSearch = algCoffe.depthFirstSearch
-    AdjacencyList = algCoffe.AdjacencyList
+    depthFirstSearch = algCoffee.depthFirstSearch
+    AdjacencyList = algCoffee.AdjacencyList
 
 kosaraju = (graph) ->
     revertGraph = () ->
@@ -56,5 +56,5 @@ kosaraju = (graph) ->
 
     return connectedComponents
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.kosaraju = kosaraju
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.kosaraju = kosaraju

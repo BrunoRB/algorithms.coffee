@@ -31,5 +31,5 @@ bellmanFord = (graph, startVertex) ->
         distance: minimumDistances
     }
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.bellmanFord = bellmanFord
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.bellmanFord = bellmanFord

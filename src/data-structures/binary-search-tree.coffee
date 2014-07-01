@@ -66,5 +66,5 @@ class BinarySearchTree
     _isRightNodeOfParent = () ->
         return @parent isnt null and @parent.right isnt null and @parent.right.value == @value
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.BinarySearchTree = BinarySearchTree
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.BinarySearchTree = BinarySearchTree

@@ -34,5 +34,5 @@ karatsubaMultiplication = (numberA, numberB) ->
 
     return result
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.karatsubaMultiplication = karatsubaMultiplication
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.karatsubaMultiplication = karatsubaMultiplication

@@ -34,5 +34,5 @@ radixSort = (array) ->
 
     return array
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.radixSort = radixSort
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.radixSort = radixSort

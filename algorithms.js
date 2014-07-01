@@ -4,20 +4,20 @@
 
   try {
     module.exports = {
-      insertionSort: require('./build/sorting/insertion-sort').algCoffe.insertionSort,
-      radixSort: require('./build/sorting/radix-sort').algCoffe.radixSort,
-      mergeSort: require('./build/sorting/merge-sort').algCoffe.mergeSort,
-      karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffe.karatsubaMultiplication,
-      bellmanFord: require('./build/graph/bellman-ford').algCoffe.bellmanFord,
-      depthFirstSearch: require('./build/graph/depth-first-search').algCoffe.depthFirstSearch,
-      kosaraju: require('./build/graph/kosaraju').algCoffe.kosaraju,
-      BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffe.BinarySearchTree,
-      AdjacencyList: require('./build/data-structures/adjacency-list').algCoffe.AdjacencyList
+      insertionSort: require('./build/sorting/insertion-sort').algCoffee.insertionSort,
+      radixSort: require('./build/sorting/radix-sort').algCoffee.radixSort,
+      mergeSort: require('./build/sorting/merge-sort').algCoffee.mergeSort,
+      karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication,
+      bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord,
+      depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch,
+      kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
+      BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree,
+      AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList
     };
   } catch (_error) {
     exception = _error;
     console.log(exception);
-    window.algCoffe = window.algCoffe ? window.algCoffe : {};
+    window.algCoffee = window.algCoffee ? window.algCoffee : {};
   }
 
 }).call(this);

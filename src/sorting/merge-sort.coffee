@@ -41,5 +41,5 @@ mergeSort = (array) ->
 
     return divide(array)
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.mergeSort = mergeSort
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.mergeSort = mergeSort

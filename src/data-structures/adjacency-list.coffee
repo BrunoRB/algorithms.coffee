@@ -47,5 +47,5 @@ class AdjacencyList
     toString: () ->
         return 'AdjacencyList with ' + @amountOfVertices + ' vertices and ' + @amountOfEdges + ' edges.'
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.AdjacencyList = AdjacencyList
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.AdjacencyList = AdjacencyList

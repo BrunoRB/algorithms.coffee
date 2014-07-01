@@ -21,5 +21,5 @@ depthFirstSearch = (graph) ->
 
     return finishingTimes
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.depthFirstSearch = depthFirstSearch
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.depthFirstSearch = depthFirstSearch

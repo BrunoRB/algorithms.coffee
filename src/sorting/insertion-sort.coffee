@@ -14,5 +14,5 @@ insertionSort = (array) ->
 
     return array
 
-@algCoffe = if @algCoffe then @algCoffe else {}
-@algCoffe.insertionSort = insertionSort
+@algCoffee = if @algCoffee then @algCoffee else {}
+@algCoffee.insertionSort = insertionSort

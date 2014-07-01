@@ -1,6 +1,8 @@
 
 src/*.js
 src/data-structures/*.js
+src/graph/*.js
+src/math/*.js
 src/sorting/*.js
 src/dynamic-programming/*.js
 test/*.js
