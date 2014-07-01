@@ -34,8 +34,5 @@ radixSort = (array) ->
 
     return array
 
-try
-    module.exports = radixSort
-catch exception
-    window.algCoffe =  if window.algCoffe then window.algCoffe else {}
-    window.algCoffe.radixSort = radixSort
+@algCoffe = if @algCoffe then @algCoffe else {}
+@algCoffe.radixSort = radixSort

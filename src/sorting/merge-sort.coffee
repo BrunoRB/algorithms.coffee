@@ -41,9 +41,5 @@ mergeSort = (array) ->
 
     return divide(array)
 
-
-try
-    module.exports = mergeSort
-catch exception
-    window.algCoffe =  if window.algCoffe then window.algCoffe else {}
-    window.algCoffe.mergeSort = mergeSort
+@algCoffe = if @algCoffe then @algCoffe else {}
+@algCoffe.mergeSort = mergeSort

@@ -3,38 +3,68 @@
 class BinarySearchTree
 
     constructor: (value, parent = null) ->
-        @root = new BSTNode(value, parent) # BSTNode
+        @value = value # anything
+        @parent = parent # BinarySearchTree
+        @left = null # BinarySearchTree
+        @right = null # BinarySearchTree
 
     insert: (value) ->
-        if value < @root.value
-            if @root.left is null
-                @root.left = new BinarySearchTree(value, @root)
-                return @root.left
+        if value < @value
+            if @left is null
+                @left = new BinarySearchTree(value, @)
+                return @left
             else
-                @root.left.insert(value)
+                @left.insert(value)
         else
-            if @root.right is null
-                @root.right = new BinarySearchTree(value, @root)
-                return @root.right
+            if @right is null
+                @right = new BinarySearchTree(value, @root)
+                return @right
             else
-                @root.right.insert(value)
+                @right.insert(value)
 
-    delete: (value) ->
+    deleteNode: (node) ->
+        ''
+        ###
+        if node.left is null and node.right is null # node has no childs
+            if _isLeftNodeOfParent(node)
+                parent.left = null
+            else if _isRightNodeOfParent(node)
+                parent.right = null
+            delete node
+        else if node.left is null # node has right child
+            if _isLeftNodeOfParent(node)
+                node.parent.left = node.rigth
+            else if _isRightNodeOfParent(node)
+                node.parent.right = node.right
+            node.right.parent = node.parent
+            delete node
+        else if node.right is null # node has left child
+            if _isLeftNodeOfParent(node)
+                node.parent.left = node.left
+            else if _isRightNodeOfParent(node)
+                node.parent.right = node.left
+            node.left.parent = node.parent
+            delete node
+        else # node has both childs
+            'nothing'
+        ###
+
+    findMinimum: () ->
+        return if @left is null then @ else @left.findMinimum()
+
+    deleteFirstNodeWithValue: (value) ->
+
+    findNode: (node) ->
         ''
 
-    _find = () ->
+    findFirstNodeWithValue: (value) ->
         ''
 
-    class BSTNode
+    _isLeftNodeOfParent = () ->
+        return @parent isnt null and @parent.left isnt null and @parent.left.value == @value
 
-        constructor: (value, parent = null) ->
-            @value = value # anything
-            @parent = parent # BinarySearchTree
-            @left = null # BinarySearchTree
-            @right = null # BinarySearchTree
+    _isRightNodeOfParent = () ->
+        return @parent isnt null and @parent.right isnt null and @parent.right.value == @value
 
-try
-    module.exports = BinarySearchTree
-catch exception
-    window.algCoffe =  if window.algCoffe then window.algCoffe else {}
-    window.algCoffe.BinarySearchTree = BinarySearchTree
+@algCoffe = if @algCoffe then @algCoffe else {}
+@algCoffe.BinarySearchTree = BinarySearchTree

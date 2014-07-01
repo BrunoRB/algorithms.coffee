@@ -21,8 +21,5 @@ depthFirstSearch = (graph) ->
 
     return finishingTimes
 
-try
-    module.exports = depthFirstSearch
-catch exception
-    window.algCoffe =  if window.algCoffe then window.algCoffe else {}
-    window.algCoffe.depthFirstSearch = depthFirstSearch
+@algCoffe = if @algCoffe then @algCoffe else {}
+@algCoffe.depthFirstSearch = depthFirstSearch

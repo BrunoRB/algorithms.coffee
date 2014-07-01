@@ -14,9 +14,5 @@ insertionSort = (array) ->
 
     return array
 
-
-try
-    module.exports = insertionSort
-catch exception
-    window.algCoffe =  if window.algCoffe then window.algCoffe else {}
-    window.algCoffe.insertionSort = insertionSort
+@algCoffe = if @algCoffe then @algCoffe else {}
+@algCoffe.insertionSort = insertionSort

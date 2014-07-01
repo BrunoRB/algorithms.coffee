@@ -8,10 +8,10 @@ describe 'Binary Search Tree', ->
         it 'should create a BST with the root Node having a value 10', ->
             bst = new BinarySearchTree 10
 
-            expect(bst.root).to.be.a 'object'
-            expect(bst.root.value).to.be.equal 10
-            expect(bst.root.left).to.be.equal null
-            expect(bst.root.right).to.be.equal null
+            expect(bst).to.be.a 'object'
+            expect(bst.value).to.be.equal 10
+            expect(bst.left).to.be.equal null
+            expect(bst.right).to.be.equal null
 
         it 'should create a new BST with the root Node having a object has value', ->
             someData =
@@ -20,12 +20,12 @@ describe 'Binary Search Tree', ->
 
             bst = new BinarySearchTree someData
 
-            expect(bst.root).to.be.a 'object'
-            expect(bst.root.left).to.be.equal null
-            expect(bst.root.right).to.be.equal null
-            expect(bst.root.value).to.be.a 'object'
-            expect(bst.root.value).to.have.property('height').equal 200
-            expect(bst.root.value).to.have.property('distance').equal 13.3
+            expect(bst).to.be.a 'object'
+            expect(bst.left).to.be.equal null
+            expect(bst.right).to.be.equal null
+            expect(bst.value).to.be.a 'object'
+            expect(bst.value).to.have.property('height').equal 200
+            expect(bst.value).to.have.property('distance').equal 13.3
 
     describe 'Insert values into a BST', ->
 
@@ -38,8 +38,8 @@ describe 'Binary Search Tree', ->
 
             for subTree in [bstTwo, bstThree, bstFour]
                 expect(subTree).to.be.a 'object'
-                expect(subTree.root).to.be.a 'object'
-                expect(subTree.root.value).to.be.a 'number'
+                expect(subTree).to.be.a 'object'
+                expect(subTree.value).to.be.a 'number'
 
         it 'should place new subtrees at the correct branch of the BST', ->
             bst = new BinarySearchTree 10
@@ -47,21 +47,35 @@ describe 'Binary Search Tree', ->
             bst.insert(20)
             bst.insert(5)
             bst.insert(30)
-            expect(bst.root.right).to.be.a 'object'
-            expect(bst.root.right.root).to.be.a 'object'
-            expect(bst.root.right.root.value).to.be.equal 20
+            expect(bst.right).to.be.a 'object'
+            expect(bst.right).to.be.a 'object'
+            expect(bst.right.value).to.be.equal 20
 
-            expect(bst.root.left).to.be.a 'object'
-            expect(bst.root.left.root).to.be.a 'object'
-            expect(bst.root.left.root.value).to.be.equal 5
+            expect(bst.left).to.be.a 'object'
+            expect(bst.left).to.be.a 'object'
+            expect(bst.left.value).to.be.equal 5
 
-            expect(bst.root.right.root.right).to.be.a 'object'
-            expect(bst.root.right.root.right.root).to.be.a 'object'
-            expect(bst.root.right.root.right.root.value).to.be.equal 30
+            expect(bst.right.right).to.be.a 'object'
+            expect(bst.right.right).to.be.a 'object'
+            expect(bst.right.right.value).to.be.equal 30
 
-    describe 'Delete nodes off a BST', ->
-        it 'should properly remove nodes of the bst', ->
-            bst = new BinarySearchTree 10
-            bstTwo = bst.insert(20)
-            bstThree = bst.insert(5)
-            bstFour = bst.insert(30)
+    describe 'Find minimum value of a BST', ->
+        it 'return the subtree with the root with value 5, the minimum value of the bst', ->
+            root = new BinarySearchTree 10
+            for value in [20, 5, 30, 15, 12]
+                root.insert(value)
+
+            bstMinimum = root.findMinimum()
+
+            expect(bstMinimum).to.be.a 'object'
+            expect(bstMinimum.value).to.be.equal 5
+
+        it 'return the subtree of with with value 22, the minimum value of the subtree at right of the root', ->
+            root = new BinarySearchTree 10
+            for value in [30, 40, 29, 27, 35, 22]
+                root.insert(value)
+
+            bstMinimum = root.right.findMinimum()
+
+            expect(bstMinimum).to.be.a 'object'
+            expect(bstMinimum.value).to.be.equal 22
