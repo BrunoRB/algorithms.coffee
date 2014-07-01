@@ -7,6 +7,7 @@ try
         bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord,
         depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch,
         kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
+        lcs: require('./build/string/longest-common-subsequence').algCoffee.lcs,
         BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree,
         AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList
 catch exception

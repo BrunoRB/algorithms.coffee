@@ -1,10 +1,11 @@
 
 src/*.js
 src/data-structures/*.js
+src/dynamic-programming/*.js
 src/graph/*.js
 src/math/*.js
 src/sorting/*.js
-src/dynamic-programming/*.js
+src/string/*.js
 test/*.js
 
 node_modules/
