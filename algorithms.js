@@ -10,6 +10,7 @@
       karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffe.karatsubaMultiplication,
       bellmanFord: require('./build/graph/bellman-ford').algCoffe.bellmanFord,
       depthFirstSearch: require('./build/graph/depth-first-search').algCoffe.depthFirstSearch,
+      kosaraju: require('./build/graph/kosaraju').algCoffe.kosaraju,
       BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffe.BinarySearchTree,
       AdjacencyList: require('./build/data-structures/adjacency-list').algCoffe.AdjacencyList
     };
