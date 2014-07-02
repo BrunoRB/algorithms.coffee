@@ -12,7 +12,7 @@
             returns the size of the LCS in an Array
             e.g.: [3]
 ###
-lcs = (firstSequence, secondSequence, reconstructSubsequence = false) ->
+longestCommonSubsequence = (firstSequence, secondSequence, reconstructSubsequence = false) ->
     firstLength = firstSequence.length
     secondLength = secondSequence.length
 
@@ -78,4 +78,4 @@ lcs = (firstSequence, secondSequence, reconstructSubsequence = false) ->
         return lcsSize()
 
 @algCoffee = if @algCoffee then @algCoffee else {}
-@algCoffee.lcs = lcs
+@algCoffee.longestCommonSubsequence = longestCommonSubsequence
