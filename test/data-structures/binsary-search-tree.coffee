@@ -59,8 +59,9 @@ describe 'Binary Search Tree', ->
             expect(bst.right.right).to.be.a 'object'
             expect(bst.right.right.value).to.be.equal 30
 
-    describe 'Find minimum value of a BST', ->
-        it 'return the subtree with the root with value 5, the minimum value of the bst', ->
+    describe 'Find the node with the minimum value of a BST', ->
+
+        it 'should return the subtree with the root with value 5, the minimum value of the bst', ->
             root = new BinarySearchTree 10
             for value in [20, 5, 30, 15, 12]
                 root.insert(value)
@@ -70,7 +71,7 @@ describe 'Binary Search Tree', ->
             expect(bstMinimum).to.be.a 'object'
             expect(bstMinimum.value).to.be.equal 5
 
-        it 'return the subtree of with with value 22, the minimum value of the subtree at right of the root', ->
+        it 'should return the subtree of with with value 22, the minimum value of the subtree at right of the root', ->
             root = new BinarySearchTree 10
             for value in [30, 40, 29, 27, 35, 22]
                 root.insert(value)
@@ -79,3 +80,47 @@ describe 'Binary Search Tree', ->
 
             expect(bstMinimum).to.be.a 'object'
             expect(bstMinimum.value).to.be.equal 22
+
+    describe 'Find the node with the maximum value of a BST', ->
+
+        root = new BinarySearchTree 5
+        for value in [4, 1, 3, 10, 11, 13]
+            root.insert(value)
+
+        it 'should return the node with value 13', ->
+            maximumNode = root.findMaximum()
+            expect(maximumNode.value).to.be.equals 13
+
+        it 'should return the node with value 4', ->
+            maximumNode = root.left.findMaximum()
+            expect(maximumNode.value).to.be.equals 4
+
+    describe 'Find nodes by value at some bst', ->
+
+        root = new BinarySearchTree 10
+        for value in [5, 40, 29, 27, 35, 22, 19]
+            root.insert(value)
+
+        it 'should find the value node with value 5', ->
+            bstNode = root.findByValue(5)
+            expect(bstNode.value).to.be.equal 5
+
+        it 'should find the value node with value 40', ->
+            bstNode = root.findByValue(40)
+            expect(bstNode.value).to.be.equal 40
+
+        it 'should find the value node with value 19', ->
+            bstNode = root.findByValue(19)
+            expect(bstNode.value).to.be.equal 19
+
+        it 'should return null when the value does not exist on the bst', ->
+            bstNode = root.findByValue(999)
+            expect(bstNode).to.be.equal null
+
+    describe 'Delete nodes of a bst', ->
+        it 'should delete a node that does not have childs (a leaf)', ->
+            root = new BinarySearchTree 10
+            for value in [5, 40, 29, 27, 35, 22, 19]
+                root.insert(value)
+            leaf = root.insert(19)
+            leaf.delete()
