@@ -4,13 +4,13 @@
     @param{Array} the first sequence (of chars or ints)
     @param{Array} the second sequence (of chars or ints)
     @param{Boolean, optional}
-    @return{Array}
+    @return{String or Integer}
         if the Boolean parameter is TRUE
-            returns the Longest Common Subsequence in an Array
-            e.g.: ['a', 'b', 'c']
+            returns the Longest Common Subsequence in a String
+            e.g.: 'abc'
         else
-            returns the size of the LCS in an Array
-            e.g.: [3]
+            returns the size of the LCS
+            e.g.: 3
 ###
 longestCommonSubsequence = (firstSequence, secondSequence, reconstructSubsequence = false) ->
     firstLength = firstSequence.length
@@ -35,7 +35,7 @@ longestCommonSubsequence = (firstSequence, secondSequence, reconstructSubsequenc
                         previousLine[i]
                     )
 
-        return [previousLine[secondLength]]
+        return previousLine[secondLength]
 
     reconstructLcs = () ->
         dynamicTable = []
@@ -70,7 +70,7 @@ longestCommonSubsequence = (firstSequence, secondSequence, reconstructSubsequenc
                 else
                     j -= 1
 
-        return subsequence.reverse()
+        return subsequence.reverse().join('')
 
     if reconstructSubsequence
         return reconstructLcs()

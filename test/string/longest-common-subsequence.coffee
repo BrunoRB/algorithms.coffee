@@ -3,7 +3,6 @@
 assert = require('chai').assert
 longestCommonSubsequence = require('../../algorithms').longestCommonSubsequence
 
-# examples taken from http://rosettacode.org/wiki/Longest_common_subsequence
 describe 'Longest Common Subsequence', ->
 
     describe 'Find the Longest Common Subsequence between two arrays', ->
@@ -11,27 +10,19 @@ describe 'Longest Common Subsequence', ->
             firstSequence = 'thisisatest'.split ''
             secondSequence = 'testing123testing'.split ''
             subsequence = longestCommonSubsequence firstSequence, secondSequence, true
-            correctAnswer = 'tsitest'.split ''
+            correctAnswer = 'tsitest'
 
-            assert.isArray subsequence, 'The LCS is in an Array'
-
-            subsequenceLength = subsequence.length
-
-            for i in [0...subsequenceLength] by 1
-                assert.strictEqual subsequence[i], correctAnswer[i], 'The letters are equal'
+            assert.isString subsequence, 'The LCS is a String'
+            assert.strictEqual subsequence, correctAnswer, 'The subsequences are the same'
 
         it 'should find the LCS between two arrays of Integers', ->
             firstSequence = '1224533324'.split ''
             secondSequence = '1234'.split ''
             subsequence = longestCommonSubsequence firstSequence, secondSequence, true
-            correctAnswer = '1234'.split ''
+            correctAnswer = '1234'
 
-            assert.isArray subsequence, 'The LCS is in an Array'
-
-            subsequenceLength = subsequence.length
-
-            for i in [0...subsequenceLength] by 1
-                assert.strictEqual subsequence[i], correctAnswer[i], 'The letters are equal'
+            assert.isString subsequence, 'The LCS is a String'
+            assert.strictEqual subsequence, correctAnswer, 'The subsequences are the same'
 
     describe 'Find the size of the LCS between two arrays', ->
         it 'should find the size of the LCS between two arrays of Strings', ->
@@ -40,8 +31,8 @@ describe 'Longest Common Subsequence', ->
             subsequenceSize = longestCommonSubsequence firstSequence, secondSequence
             correctSize = 7
 
-            assert.isArray subsequenceSize, 'The size of the LCS is also in an Array'
-            assert.strictEqual subsequenceSize[0], correctSize, 'The answer is correct'
+            assert.isNumber subsequenceSize, 'The size of the LCS is a Number'
+            assert.strictEqual subsequenceSize, correctSize, 'The answer is correct'
 
         it 'should find the size of the LCS between two arrays of Integers', ->
             firstSequence = '1224533324'.split ''
@@ -49,5 +40,5 @@ describe 'Longest Common Subsequence', ->
             subsequenceSize = longestCommonSubsequence firstSequence, secondSequence
             correctSize = 4
 
-            assert.isArray subsequenceSize, 'The size of the LCS is also in an Array'
-            assert.strictEqual subsequenceSize[0], correctSize, 'The answer is correct'
+            assert.isNumber subsequenceSize, 'The size of the LCS is a Number'
+            assert.strictEqual subsequenceSize, correctSize, 'The answer is correct'
