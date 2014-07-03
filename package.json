@@ -4,6 +4,7 @@
     "description":
         "Classic algorithms and data structures in coffeescript. Making the World a better place, with coffee.",
     "directories": {
+        "lib": "build",
         "test": "test"
     },
     "main": "algorithms",
@@ -36,7 +37,15 @@
     "contributors" : [
         "Tayllan Búrigo <tayllanburigo@gmail.com>"
     ],
-    "license": "MIT",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/BrunoRB/algorithms.coffee/blob/master/LICENSE"
+        }
+    ],
+    "engines": {
+        "node": ">= 0.10.0"
+    },
     "bugs": {
         "url": "https://github.com/BrunoRB/algorithms.coffee/issues"
     },
