@@ -39,7 +39,7 @@ class Heap
             largestPos = rightPos
 
         if largestPos != pos
-            @array[pos], @array[largestPos] = @array[largestPos], @array[pos]
+            [@array[pos], @array[largestPos]] = [@array[largestPos], @array[pos]]
             @maxHeapfy(largestPos, arrayLength)
 
 @algCoffee = if @algCoffee then @algCoffee else {}
