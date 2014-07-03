@@ -5,7 +5,9 @@ algorithms.coffee
 
 ## Because there is no life without coffee
 > Classic algorithms and data structures in CoffeeScript.
+
 > Can be used in either NodeJS (server-side JS) or in the Browser (client-side JS).
+
 > It uses [Mocha](http://visionmedia.github.io/mocha/) as the Testing Framework, [Chai](http://chaijs.com/) as the Assertion Library and [CoffeeLint](http://www.coffeelint.org/) as the Style Checker Library.
 
 ## Getting Started
@@ -74,6 +76,6 @@ grunt
 From this point on you're good to go and contribute with the library.
 Just write your `.coffee` code in the appropriate directory in `./src` and make sure to write the test code as well.
 Also, make sure to follow the Coding Style stated in `coffeelint.json` and
-the other default options of CoffeeLint.
+the other default options of [CoffeeLint](http://www.coffeelint.org/).
 
 Before you send a Pull Request, run `grunt` again to be sure that everything is OK.

@@ -14,7 +14,8 @@ try {
     longestCommonSubsequence: require('./build/string/longest-common-subsequence').algCoffee.longestCommonSubsequence,
     AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList,
     BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree,
-    DisjointSet: require('./build/data-structures/disjoint-set').algCoffee.DisjointSet
+    DisjointSet: require('./build/data-structures/disjoint-set').algCoffee.DisjointSet,
+    SegmentTree: require('./build/data-structures/segment-tree').algCoffee.SegmentTree
   };
 } catch (_error) {
   exception = _error;

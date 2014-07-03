@@ -14,6 +14,7 @@ try
         AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList
         BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree
         DisjointSet: require('./build/data-structures/disjoint-set').algCoffee.DisjointSet
+        SegmentTree: require('./build/data-structures/segment-tree').algCoffee.SegmentTree
 catch exception
     console.log exception
     window.algCoffee =  if window.algCoffee then window.algCoffee else {}
