@@ -322,6 +322,75 @@
 /* @author Tayllan Búrigo 2014 */
 
 (function() {
+  var SegmentTree;
+
+  SegmentTree = (function() {
+    function SegmentTree(arrayOfElements, leftLimit, rightLimit, operation) {
+      var halfLimit;
+      if (arrayOfElements == null) {
+        arrayOfElements = [];
+      }
+      this.operation = operation;
+      this.leftIndex = leftLimit;
+      this.rightIndex = rightLimit;
+      if (leftLimit === rightLimit) {
+        this.leftNode = null;
+        this.rightNode = null;
+        this.total = arrayOfElements[leftLimit];
+      } else {
+        halfLimit = parseInt((leftLimit + rightLimit) / 2);
+        this.leftNode = new SegmentTree(arrayOfElements, leftLimit, halfLimit, this.operation);
+        this.rightNode = new SegmentTree(arrayOfElements, halfLimit + 1, rightLimit, this.operation);
+        this.total = this.operation(this.leftNode.total, this.rightNode.total);
+      }
+    }
+
+    SegmentTree.prototype.query = function(i, j) {
+      var leftTotal, rightTotal;
+      if (j < this.leftIndex || this.rightIndex < i) {
+        return void 0;
+      } else if (i <= this.leftIndex && this.rightIndex <= j) {
+        return this.total;
+      } else {
+        leftTotal = this.leftNode.query(i, j);
+        rightTotal = this.rightNode.query(i, j);
+        if (leftTotal === void 0 && rightTotal === void 0) {
+          return void 0;
+        } else if (leftTotal === void 0) {
+          return rightTotal;
+        } else if (rightTotal === void 0) {
+          return leftTotal;
+        } else {
+          return this.operation(leftTotal, rightTotal);
+        }
+      }
+    };
+
+    SegmentTree.prototype.update = function(index, newValue) {
+      if (index < this.leftIndex || this.rightIndex < index) {
+        return this.total;
+      } else if (index <= this.leftIndex && this.rightIndex <= index) {
+        this.total = newValue;
+        return this.total;
+      } else {
+        this.total = this.operation(this.leftNode.update(index, newValue), this.rightNode.update(index, newValue));
+        return this.total;
+      }
+    };
+
+    return SegmentTree;
+
+  })();
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.SegmentTree = SegmentTree;
+
+}).call(this);
+;
+/* @author Tayllan Búrigo 2014 */
+
+(function() {
   var bellmanFord;
 
   bellmanFord = function(graph, startVertex) {
