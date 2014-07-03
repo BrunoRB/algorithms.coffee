@@ -36,10 +36,19 @@ module.exports = function(grunt) {
                 src: ['./test/**/*.coffee']
             }
         },
+        concat: {
+            options: {
+                separator: ';',
+            },
+            dist: {
+                src: './build/**/*.js',
+                dest: './dist/algorithms.coffee.js',
+            },
+        },
         uglify: {
             my_target: {
                 files: {
-                    './dist/algorithms.coffee.min.js': './build/**/*.js'
+                    './dist/algorithms.coffee.min.js': './dist/algorithms.coffee.js'
                 }
             }
         }
@@ -53,6 +62,7 @@ module.exports = function(grunt) {
             'coffee',
             'coffeelint',
             'mochaTest',
+            'concat',
             'uglify'
         ]
     );
@@ -62,6 +72,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-coffeelint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
 };

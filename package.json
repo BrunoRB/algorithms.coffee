@@ -19,7 +19,8 @@
         "grunt-mkdir": "latest",
         "grunt-contrib-coffee": "latest",
         "grunt-coffeelint": "latest",
-        "grunt-contrib-uglify": "latest"
+        "grunt-contrib-uglify": "latest",
+        "grunt-contrib-concat": "latest"
     },
     "scripts": {
         "test": "grunt --verbose"
