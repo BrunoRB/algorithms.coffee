@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
         mkdir: {
             all: {
-                create: 'build'
+                create: ['dist', 'build']
             },
         },
         coffee: {
@@ -35,6 +35,13 @@ module.exports = function(grunt) {
                 ],
                 src: ['./test/**/*.coffee']
             }
+        },
+        uglify: {
+            my_target: {
+                files: {
+                    './dist/algorithms.coffee.min.js': './build/**/*.js'
+                }
+            }
         }
     });
 
@@ -45,7 +52,8 @@ module.exports = function(grunt) {
             'mkdir',
             'coffee',
             'coffeelint',
-            'mochaTest'
+            'mochaTest',
+            'uglify'
         ]
     );
 
@@ -54,5 +62,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-coffeelint');
     grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
 };
