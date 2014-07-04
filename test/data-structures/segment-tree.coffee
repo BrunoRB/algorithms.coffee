@@ -11,40 +11,28 @@ describe 'Segment Tree', ->
 
         segmentTree = new SegmentTree arrayOfElements, 0, arrayLength - 1, (a, b) -> return a + b
 
-        # sum all elements
-        auxiliaryFunction = (i, j) ->
-            total = 0
-
-            for index in [i..j] by 1
-                total += arrayOfElements[index]
-
-            return total
-
         it 'should assert that the Segment Tree was created with the given values', ->
             for index in [0...arrayLength] by 1
                 assert.strictEqual arrayOfElements[index], segmentTree.query(index, index), 'The value is correct'
 
         it 'should update the values in the SegmentTree and assert the @total value', ->
+            # [0, 0, 0, 0, 0, 18, 0, 0, 0, 0] = query(3, 5) is 18
+            segmentTree.update 5, 18
+            assert.strictEqual segmentTree.query(3, 5), 18, 'Correct'
 
-            # each element will be updated once
-            for index in [0...arrayLength] by 1
-                newValue = parseInt Math.random() * 1000
-                segmentTree.update index, newValue
+            # [0, 0, 0, 0, 0, 18, 0, 0, 0, 999] = query(0, 9) is 1017
+            segmentTree.update 9, 999
+            assert.strictEqual segmentTree.query(0, 9), 1017, 'Correct'
 
-                # and just for test purposes, the array is also updated
-                arrayOfElements[index] = newValue
+            # [0, 0, 2, 0, 0, 18, 0, 0, 0, 999] = query(5, 9) is 1017 and query(0, 2) is 2
+            segmentTree.update 2, 2
+            assert.strictEqual segmentTree.query(5, 9), 1017, 'Correct'
+            assert.strictEqual segmentTree.query(0, 2), 2, 'Correct'
 
-                # indices to update
-                indexA = parseInt Math.random() * (arrayLength - 1)
-                indexB = parseInt Math.random() * (arrayLength - 1)
-
-                if indexA > indexB
-                    [indexA, indexB] = [indexB, indexA]
-
-                correctAnswer = auxiliaryFunction indexA, indexB
-                givenAnswer = segmentTree.query indexA, indexB
-
-                assert.strictEqual correctAnswer, givenAnswer, 'The operation was performed successfully'
+            # [0, 0, 2, 0, 0, 18, 0, 0, 0, 1] = query(9, 9) is 1 and query(6, 8) is 0
+            segmentTree.update 9, 1
+            assert.strictEqual segmentTree.query(9, 9), 1, 'Correct'
+            assert.strictEqual segmentTree.query(6, 8), 0, 'Correct'
 
     describe 'Store elements if the form of segments and perform Multiplication operations over the segments', ->
         arrayOfElements = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
@@ -52,37 +40,25 @@ describe 'Segment Tree', ->
 
         segmentTree = new SegmentTree arrayOfElements, 0, arrayLength - 1, (a, b) -> return a * b
 
-        # multiply all elements
-        auxiliaryFunction = (i, j) ->
-            total = 1
-
-            for index in [i..j] by 1
-                total *= arrayOfElements[index]
-
-            return total
-
         it 'should assert that the Segment Tree was created with the given values', ->
             for index in [0...arrayLength] by 1
                 assert.strictEqual arrayOfElements[index], segmentTree.query(index, index), 'The value is correct'
 
         it 'should update the values in the SegmentTree and assert the @total value', ->
+            # [1, 1, 1, 1, 1, 18, 1, 1, 1, 1] = query(3, 5) is 18
+            segmentTree.update 5, 18
+            assert.strictEqual segmentTree.query(3, 5), 18, 'Correct'
 
-            # each element will be updated once
-            for index in [0...arrayLength] by 1
-                newValue = parseInt Math.random() * 1000
-                segmentTree.update index, newValue
+            # [1, 1, 1, 1, 1, 18, 1, 1, 1, 999] = query(0, 9) is 17982
+            segmentTree.update 9, 999
+            assert.strictEqual segmentTree.query(0, 9), 17982, 'Correct'
 
-                # and just for test purposes, the array is also updated
-                arrayOfElements[index] = newValue
+            # [1, 1, 2, 1, 1, 18, 1, 1, 1, 999] = query(5, 9) is 1017 and query(0, 2) is 2
+            segmentTree.update 2, 2
+            assert.strictEqual segmentTree.query(5, 9), 17982, 'Correct'
+            assert.strictEqual segmentTree.query(0, 2), 2, 'Correct'
 
-                # indices to update
-                indexA = parseInt Math.random() * (arrayLength - 1)
-                indexB = parseInt Math.random() * (arrayLength - 1)
-
-                if indexA > indexB
-                    [indexA, indexB] = [indexB, indexA]
-
-                correctAnswer = auxiliaryFunction indexA, indexB
-                givenAnswer = segmentTree.query indexA, indexB
-
-                assert.strictEqual correctAnswer, givenAnswer, 'The operation was performed successfully'
+            # [1, 1, 2, 1, 1, 18, 1, 1, 1, 1] = query(9, 9) is 1 and query(6, 8) is 1
+            segmentTree.update 9, 1
+            assert.strictEqual segmentTree.query(9, 9), 1, 'Correct'
+            assert.strictEqual segmentTree.query(6, 8), 1, 'Correct'

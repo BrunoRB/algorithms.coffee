@@ -483,7 +483,7 @@
 /* @author Tayllan Búrigo 2014 */
 
 (function() {
-  var AdjacencyList, fordFulkerson;
+  var AdjacencyList, edmondsKarp;
 
   if (typeof module !== 'undefined') {
     AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
@@ -491,26 +491,29 @@
     AdjacencyList = algCoffee.AdjacencyList;
   }
 
-  fordFulkerson = function(initialGraph, sourceVertex, sinkVertex) {
-    var aux, cloneGraph, eliminateAntiParallelEdges, findAugmentingPath, graph, maximumFlow;
+  edmondsKarp = function(graph, sourceVertex, sinkVertex) {
+    var aux, createResidualGraph, eliminateAntiParallelEdges, findAugmentingPath, maximumFlow, residualGraph;
     sourceVertex += '';
     sinkVertex += '';
-    cloneGraph = function() {
-      var graph, source, target, value, weight, _ref;
-      graph = new AdjacencyList;
-      _ref = initialGraph.edges;
+    createResidualGraph = function() {
+      var residualGraph, source, target, value, weight, _ref;
+      residualGraph = new AdjacencyList();
+      _ref = graph.edges;
       for (source in _ref) {
         value = _ref[source];
         for (target in value) {
           weight = value[target];
-          graph.addEdge(source, target, weight);
+          if (graph.getEdgeWeight(target, source) === void 0) {
+            residualGraph.addEdge(target, source, 0);
+          }
+          residualGraph.addEdge(source, target, weight);
         }
       }
-      return graph;
+      return residualGraph;
     };
     eliminateAntiParallelEdges = function() {
       var newVertex, source, target, value, weight, _ref, _results;
-      _ref = graph.edges;
+      _ref = residualGraph.edges;
       _results = [];
       for (source in _ref) {
         value = _ref[source];
@@ -519,14 +522,14 @@
           _results1 = [];
           for (target in value) {
             weight = value[target];
-            if (graph.edges[target][source] !== void 0) {
-              newVertex = parseInt(Math.random() * graph.amountOfVertices * 10);
-              while (graph.edges[newVertex] !== void 0) {
-                newVertex = parseInt(Math.random() * graph.amountOfVertices * 10);
+            if (residualGraph.edges[target][source] !== void 0) {
+              newVertex = parseInt(Math.random() * residualGraph.amountOfVertices * 10);
+              while (residualGraph.edges[newVertex] !== void 0) {
+                newVertex = parseInt(Math.random() * residualGraph.amountOfVertices * 10);
               }
-              graph.addEdge(source, newVertex, weight);
-              graph.addEdge(newVertex, target, weight);
-              _results1.push(graph.deleteEdge(source, target));
+              residualGraph.addEdge(source, newVertex, weight);
+              residualGraph.addEdge(newVertex, target, weight);
+              _results1.push(residualGraph.deleteEdge(source, target));
             } else {
               _results1.push(void 0);
             }
@@ -550,16 +553,17 @@
           v = sinkVertex;
           parent = parents[v];
           while (parent !== void 0) {
-            graph.edges[parent][v] -= maximumFlowThroughPath[sinkVertex];
-            if (graph.edges[parent][v] === 0) {
-              graph.deleteEdge(parent, v);
+            residualGraph.edges[parent][v] -= maximumFlowThroughPath[sinkVertex];
+            residualGraph.edges[v][parent] += maximumFlowThroughPath[sinkVertex];
+            if (residualGraph.edges[parent][v] === 0) {
+              residualGraph.deleteEdge(parent, v);
             }
             v = parent;
             parent = parents[parent];
           }
           return maximumFlowThroughPath[sinkVertex];
         }
-        currentVertexRoommates = graph.getRoommates(currentVertex);
+        currentVertexRoommates = residualGraph.getRoommates(currentVertex);
         for (target in currentVertexRoommates) {
           weight = currentVertexRoommates[target];
           if (visitedVertices[target] === void 0) {
@@ -576,7 +580,123 @@
       }
       return void 0;
     };
-    graph = cloneGraph();
+    residualGraph = createResidualGraph();
+    eliminateAntiParallelEdges();
+    maximumFlow = 0;
+    aux = 0;
+    while ((aux = findAugmentingPath(sourceVertex, sinkVertex)) !== void 0) {
+      maximumFlow += aux;
+    }
+    return maximumFlow;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.edmondsKarp = edmondsKarp;
+
+}).call(this);
+;
+/* @author Tayllan Búrigo 2014 */
+
+(function() {
+  var AdjacencyList, fordFulkerson;
+
+  if (typeof module !== 'undefined') {
+    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
+  } else {
+    AdjacencyList = algCoffee.AdjacencyList;
+  }
+
+  fordFulkerson = function(graph, sourceVertex, sinkVertex) {
+    var aux, createResidualGraph, eliminateAntiParallelEdges, findAugmentingPath, maximumFlow, residualGraph;
+    sourceVertex += '';
+    sinkVertex += '';
+    createResidualGraph = function() {
+      var residualGraph, source, target, value, weight, _ref;
+      residualGraph = new AdjacencyList();
+      _ref = graph.edges;
+      for (source in _ref) {
+        value = _ref[source];
+        for (target in value) {
+          weight = value[target];
+          if (graph.getEdgeWeight(target, source) === void 0) {
+            residualGraph.addEdge(target, source, 0);
+          }
+          residualGraph.addEdge(source, target, weight);
+        }
+      }
+      return residualGraph;
+    };
+    eliminateAntiParallelEdges = function() {
+      var newVertex, source, target, value, weight, _ref, _results;
+      _ref = residualGraph.edges;
+      _results = [];
+      for (source in _ref) {
+        value = _ref[source];
+        _results.push((function() {
+          var _results1;
+          _results1 = [];
+          for (target in value) {
+            weight = value[target];
+            if (residualGraph.edges[target][source] !== void 0) {
+              newVertex = parseInt(Math.random() * residualGraph.amountOfVertices * 10);
+              while (residualGraph.edges[newVertex] !== void 0) {
+                newVertex = parseInt(Math.random() * residualGraph.amountOfVertices * 10);
+              }
+              residualGraph.addEdge(source, newVertex, weight);
+              residualGraph.addEdge(newVertex, target, weight);
+              _results1.push(residualGraph.deleteEdge(source, target));
+            } else {
+              _results1.push(void 0);
+            }
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
+    findAugmentingPath = function(sourceVertex, sinkVertex) {
+      var currentVertex, currentVertexRoommates, maximumFlowThroughPath, parent, parents, queue, target, v, visitedVertices, weight;
+      parents = {};
+      maximumFlowThroughPath = {};
+      visitedVertices = {};
+      queue = [];
+      visitedVertices[sourceVertex] = true;
+      queue.push(sourceVertex);
+      while (queue.length > 0) {
+        currentVertex = queue.shift();
+        if (currentVertex === sinkVertex) {
+          v = sinkVertex;
+          parent = parents[v];
+          while (parent !== void 0) {
+            residualGraph.edges[parent][v] -= maximumFlowThroughPath[sinkVertex];
+            residualGraph.edges[v][parent] += maximumFlowThroughPath[sinkVertex];
+            if (residualGraph.edges[parent][v] === 0) {
+              residualGraph.deleteEdge(parent, v);
+            }
+            v = parent;
+            parent = parents[parent];
+          }
+          return maximumFlowThroughPath[sinkVertex];
+        }
+        currentVertexRoommates = residualGraph.getRoommates(currentVertex);
+        for (target in currentVertexRoommates) {
+          weight = currentVertexRoommates[target];
+          if (visitedVertices[target] === void 0) {
+            parents[target] = currentVertex;
+            if (maximumFlowThroughPath[currentVertex] === void 0) {
+              maximumFlowThroughPath[target] = weight;
+            } else {
+              maximumFlowThroughPath[target] = Math.min(maximumFlowThroughPath[currentVertex], weight);
+            }
+            visitedVertices[target] = true;
+            queue.push(target);
+          }
+        }
+      }
+      return void 0;
+    };
+    residualGraph = createResidualGraph();
     eliminateAntiParallelEdges();
     maximumFlow = 0;
     aux = 0;
