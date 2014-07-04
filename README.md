@@ -35,19 +35,24 @@ var sortedArray = myVariable.insertionSort([3, 1, 2]);
 
 #### Browser
 To use the library in standard client-side JavaScript just download the js file contained in the ./dist/ then include it like any other .js.
-```shell
+```html
 <script src="algorithms.coffee.js"></script>
 ```
 
 Or the minified version
-```shell
+```html
 <script src="algorithms.coffee.min.js"></script>
 ```
 
-```shell
-var array = [10, 80, 300, 500, 11, 2, 333];
+All the library features are available through the global variable algCoffee.
 
+```javascript
+var array = [10, 80, 300, 500, 11, 2, 333];
 algCoffee.mergeSort(array);
+
+var anotherArray = [30, 20, 1, 3, 99, 667];
+var heap = new algCoffee.Heap(anotherArray);
+heap.buildMaxHeap();
 ```
 
 ### Contributors
