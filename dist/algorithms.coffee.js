@@ -1,6 +1,7 @@
-
-/* @author Tayllan Búrigo 2014 */
-
+/**     The MIT License (MIT)
+    Copyright (c) 2014 Bruno Roberto Búrig
+    https://github.com/BrunoRB/algorithms.coffee
+    Permission is hereby granted, free of charge, to any person obtaining a copy     of this software and associated documentation files (the "Software"), to deal     in the Software without restriction, including without limitation the rights     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell     copies of the Software, and to permit persons to whom the Software is     furnished to do so, subject to the following conditions:     The above copyright notice and this permission notice shall be included in all     copies or substantial portions of the Software.     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE     SOFTWARE.*/
 (function() {
   var AdjacencyList;
 
@@ -69,10 +70,7 @@
   this.algCoffee.AdjacencyList = AdjacencyList;
 
 }).call(this);
-;
-/* @author Bruno Roberto Búrigo 2014 */
-
-(function() {
+;(function() {
   var BinarySearchTree;
 
   BinarySearchTree = (function() {
@@ -187,10 +185,7 @@
   this.algCoffee.BinarySearchTree = BinarySearchTree;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var DisjointSet;
 
   DisjointSet = (function() {
@@ -240,10 +235,7 @@
   this.algCoffee.DisjointSet = DisjointSet;
 
 }).call(this);
-;
-/* @author Bruno Roberto Búrigo 2014 */
-
-(function() {
+;(function() {
   var Heap;
 
   Heap = (function() {
@@ -281,7 +273,7 @@
       isGreaterThan = function(first, second) {
         return first > second;
       };
-      return this.heapfy(pos, arrayLength, isGreaterThan);
+      return this.heapfy(pos, arrayLength, isGreaterThan, true);
     };
 
     Heap.prototype.minHeapfy = function(pos, arrayLength) {
@@ -289,23 +281,54 @@
       isLessThan = function(first, second) {
         return first < second;
       };
-      return this.heapfy(pos, arrayLength, isLessThan);
+      return this.heapfy(pos, arrayLength, isLessThan, false);
     };
 
-    Heap.prototype.heapfy = function(pos, arrayLength, compare) {
+    Heap.prototype.insertIntoMaxHeap = function(value) {
+      var isLessThan;
+      isLessThan = function(first, second) {
+        return first < second;
+      };
+      return this.bubbleUp(this.array.length - 1, isLessThan);
+    };
+
+    Heap.prototype.insertIntoMinHeap = function(value) {
+      var isGreaterThan;
+      isGreaterThan = function(first, second) {
+        return first > second;
+      };
+      return this.bubbleUp(this.array.length - 1, isGreaterThan);
+    };
+
+    Heap.prototype.heapfy = function(pos, arrayLength, compareFn, isMaxHeapfy) {
       var largestPos, leftPos, rightPos, _ref;
       leftPos = 2 * pos + 1;
       rightPos = 2 * (pos + 1);
       largestPos = pos;
-      if (leftPos < arrayLength && compare(this.array[leftPos], this.array[largestPos])) {
+      if (leftPos < arrayLength && compareFn(this.array[leftPos], this.array[largestPos])) {
         largestPos = leftPos;
       }
-      if (rightPos < arrayLength && compare(this.array[rightPos], this.array[largestPos])) {
+      if (rightPos < arrayLength && compareFn(this.array[rightPos], this.array[largestPos])) {
         largestPos = rightPos;
       }
       if (largestPos !== pos) {
         _ref = [this.array[largestPos], this.array[pos]], this.array[pos] = _ref[0], this.array[largestPos] = _ref[1];
-        return this.maxHeapfy(largestPos, arrayLength);
+        if (isMaxHeapfy) {
+          return this.maxHeapfy(largestPos, arrayLength);
+        } else {
+          return this.minHeapfy(largestPos, arrayLength);
+        }
+      }
+    };
+
+    Heap.prototype.bubbleUp = function(pos, compareFn) {
+      var aux, parentPos;
+      parentPos = Math.floor((pos - 1) / 2);
+      if (parentPos >= 0 && compareFn(this.array[parentPos], this.array[pos])) {
+        aux = this.array[parentPos];
+        this.array[parentPos] = this.array[pos];
+        this.array[pos] = aux;
+        return this.bubbleUp(parentPos, compareFn);
       }
     };
 
@@ -318,10 +341,7 @@
   this.algCoffee.Heap = Heap;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var SegmentTree;
 
   SegmentTree = (function() {
@@ -387,10 +407,7 @@
   this.algCoffee.SegmentTree = SegmentTree;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var bellmanFord;
 
   bellmanFord = function(graph, startVertex) {
@@ -440,10 +457,7 @@
   this.algCoffee.bellmanFord = bellmanFord;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var depthFirstSearch;
 
   depthFirstSearch = function(graph) {
@@ -479,10 +493,7 @@
   this.algCoffee.depthFirstSearch = depthFirstSearch;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var AdjacencyList, edmondsKarp;
 
   if (typeof module !== 'undefined') {
@@ -595,126 +606,7 @@
   this.algCoffee.edmondsKarp = edmondsKarp;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
-  var AdjacencyList, fordFulkerson;
-
-  if (typeof module !== 'undefined') {
-    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
-  } else {
-    AdjacencyList = algCoffee.AdjacencyList;
-  }
-
-  fordFulkerson = function(graph, sourceVertex, sinkVertex) {
-    var aux, createResidualGraph, eliminateAntiParallelEdges, findAugmentingPath, maximumFlow, residualGraph;
-    sourceVertex += '';
-    sinkVertex += '';
-    createResidualGraph = function() {
-      var residualGraph, source, target, value, weight, _ref;
-      residualGraph = new AdjacencyList();
-      _ref = graph.edges;
-      for (source in _ref) {
-        value = _ref[source];
-        for (target in value) {
-          weight = value[target];
-          if (graph.getEdgeWeight(target, source) === void 0) {
-            residualGraph.addEdge(target, source, 0);
-          }
-          residualGraph.addEdge(source, target, weight);
-        }
-      }
-      return residualGraph;
-    };
-    eliminateAntiParallelEdges = function() {
-      var newVertex, source, target, value, weight, _ref, _results;
-      _ref = residualGraph.edges;
-      _results = [];
-      for (source in _ref) {
-        value = _ref[source];
-        _results.push((function() {
-          var _results1;
-          _results1 = [];
-          for (target in value) {
-            weight = value[target];
-            if (residualGraph.edges[target][source] !== void 0) {
-              newVertex = parseInt(Math.random() * residualGraph.amountOfVertices * 10);
-              while (residualGraph.edges[newVertex] !== void 0) {
-                newVertex = parseInt(Math.random() * residualGraph.amountOfVertices * 10);
-              }
-              residualGraph.addEdge(source, newVertex, weight);
-              residualGraph.addEdge(newVertex, target, weight);
-              _results1.push(residualGraph.deleteEdge(source, target));
-            } else {
-              _results1.push(void 0);
-            }
-          }
-          return _results1;
-        })());
-      }
-      return _results;
-    };
-    findAugmentingPath = function(sourceVertex, sinkVertex) {
-      var currentVertex, currentVertexRoommates, maximumFlowThroughPath, parent, parents, queue, target, v, visitedVertices, weight;
-      parents = {};
-      maximumFlowThroughPath = {};
-      visitedVertices = {};
-      queue = [];
-      visitedVertices[sourceVertex] = true;
-      queue.push(sourceVertex);
-      while (queue.length > 0) {
-        currentVertex = queue.shift();
-        if (currentVertex === sinkVertex) {
-          v = sinkVertex;
-          parent = parents[v];
-          while (parent !== void 0) {
-            residualGraph.edges[parent][v] -= maximumFlowThroughPath[sinkVertex];
-            residualGraph.edges[v][parent] += maximumFlowThroughPath[sinkVertex];
-            if (residualGraph.edges[parent][v] === 0) {
-              residualGraph.deleteEdge(parent, v);
-            }
-            v = parent;
-            parent = parents[parent];
-          }
-          return maximumFlowThroughPath[sinkVertex];
-        }
-        currentVertexRoommates = residualGraph.getRoommates(currentVertex);
-        for (target in currentVertexRoommates) {
-          weight = currentVertexRoommates[target];
-          if (visitedVertices[target] === void 0) {
-            parents[target] = currentVertex;
-            if (maximumFlowThroughPath[currentVertex] === void 0) {
-              maximumFlowThroughPath[target] = weight;
-            } else {
-              maximumFlowThroughPath[target] = Math.min(maximumFlowThroughPath[currentVertex], weight);
-            }
-            visitedVertices[target] = true;
-            queue.push(target);
-          }
-        }
-      }
-      return void 0;
-    };
-    residualGraph = createResidualGraph();
-    eliminateAntiParallelEdges();
-    maximumFlow = 0;
-    aux = 0;
-    while ((aux = findAugmentingPath(sourceVertex, sinkVertex)) !== void 0) {
-      maximumFlow += aux;
-    }
-    return maximumFlow;
-  };
-
-  this.algCoffee = this.algCoffee ? this.algCoffee : {};
-
-  this.algCoffee.fordFulkerson = fordFulkerson;
-
-}).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var AdjacencyList, depthFirstSearch, kosaraju;
 
   if (typeof module !== 'undefined') {
@@ -791,10 +683,7 @@
   this.algCoffee.kosaraju = kosaraju;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var DisjointSet, kruskal;
 
   if (typeof module !== 'undefined') {
@@ -834,10 +723,7 @@
   this.algCoffee.kruskal = kruskal;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-(function() {
+;(function() {
   var karatsubaMultiplication;
 
   karatsubaMultiplication = function(numberA, numberB) {
@@ -877,10 +763,7 @@
   this.algCoffee.karatsubaMultiplication = karatsubaMultiplication;
 
 }).call(this);
-;
-/* @author Bruno Roberto Búrigo 2014 */
-
-(function() {
+;(function() {
   var insertionSort;
 
   insertionSort = function(array) {
@@ -902,10 +785,7 @@
   this.algCoffee.insertionSort = insertionSort;
 
 }).call(this);
-;
-/* @author Bruno Roberto Búrigo 2014 */
-
-(function() {
+;(function() {
   var mergeSort;
 
   mergeSort = function(array) {
@@ -955,10 +835,7 @@
   this.algCoffee.mergeSort = mergeSort;
 
 }).call(this);
-;
-/* @author Bruno Roberto Búrigo 2014 */
-
-(function() {
+;(function() {
   var radixSort;
 
   radixSort = function(array) {
@@ -1010,11 +887,7 @@
   this.algCoffee.radixSort = radixSort;
 
 }).call(this);
-;
-/* @author Tayllan Búrigo 2014 */
-
-
-/*
+;/*
     @param{Array} the first sequence (of chars or ints)
     @param{Array} the second sequence (of chars or ints)
     @param{Boolean, optional}

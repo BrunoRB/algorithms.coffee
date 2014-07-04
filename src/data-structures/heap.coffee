@@ -20,27 +20,48 @@ class Heap
     maxHeapfy: (pos, arrayLength) ->
         isGreaterThan = (first, second) ->
             return first > second
-        @heapfy(pos, arrayLength, isGreaterThan)
+        @heapfy(pos, arrayLength, isGreaterThan, true)
 
     minHeapfy: (pos, arrayLength) ->
         isLessThan = (first, second) ->
             return first < second
-        @heapfy(pos, arrayLength, isLessThan)
+        @heapfy(pos, arrayLength, isLessThan, false)
 
-    heapfy: (pos, arrayLength, compare) ->
+    insertIntoMaxHeap: (value) ->
+        isLessThan = (first, second) ->
+            return first < second
+        @bubbleUp(@array.length - 1, isLessThan)
+
+    insertIntoMinHeap: (value) ->
+        isGreaterThan = (first, second) ->
+            return first > second
+        @bubbleUp(@array.length - 1, isGreaterThan)
+
+    heapfy: (pos, arrayLength, compareFn, isMaxHeapfy) ->
         leftPos = 2 * pos + 1
         rightPos = 2 * (pos + 1)
         largestPos = pos
 
-        if leftPos < arrayLength and compare(@array[leftPos], @array[largestPos])
+        if leftPos < arrayLength and compareFn(@array[leftPos], @array[largestPos])
             largestPos = leftPos
 
-        if rightPos < arrayLength and compare(@array[rightPos], @array[largestPos])
+        if rightPos < arrayLength and compareFn(@array[rightPos], @array[largestPos])
             largestPos = rightPos
 
         if largestPos != pos
             [@array[pos], @array[largestPos]] = [@array[largestPos], @array[pos]]
-            @maxHeapfy(largestPos, arrayLength)
+            if isMaxHeapfy
+                @maxHeapfy(largestPos, arrayLength)
+            else
+                @minHeapfy(largestPos, arrayLength)
+
+    bubbleUp: (pos, compareFn) ->
+        parentPos = (pos - 1) // 2
+        if parentPos >= 0 and compareFn(@array[parentPos], @array[pos])
+            aux = @array[parentPos]
+            @array[parentPos] = @array[pos]
+            @array[pos] = aux
+            @bubbleUp(parentPos, compareFn)
 
 @algCoffee = if @algCoffee then @algCoffee else {}
 @algCoffee.Heap = Heap
