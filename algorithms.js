@@ -8,7 +8,7 @@ try {
     karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication,
     bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord,
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch,
-    fordFulkerson: require('./build/graph/ford-fulkerson').algCoffee.fordFulkerson,
+    edmondsKarp: require('./build/graph/edmonds-karp').algCoffee.edmondsKarp,
     kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
     kruskal: require('./build/graph/kruskal').algCoffee.kruskal,
     longestCommonSubsequence: require('./build/string/longest-common-subsequence').algCoffee.longestCommonSubsequence,
