@@ -77,12 +77,11 @@ describe 'Heap', ->
                     expect(array[index]).to.be.at.most(array[rightChild])
 
     describe 'Extract', ->
-        array = [3, 40, 20, 50, 1, 2, 444, 9, 50, 23, 132, 232, 134, 1, 455, 234, 1235, 9434, 4435, 22]
-        sortedArray = array.slice().sort((a, b) -> a - b) # copy and sort
-
-        heap = new Heap(array)
-
         it 'should extract the max value of a maxHeap', ->
+            array = [3, 40, 20, 50, 1, 2, 444, 9, 50, 23, 132, 232, 134, 1, 455, 234, 1235, 9434, 4435, 22]
+            sortedArray = array.slice().sort((a, b) -> a - b) # copy and sort
+            heap = new Heap(array)
+
             heap.buildMaxHeap(array)
 
             sortedArrayIndex = sortedArray.length - 1
@@ -92,6 +91,10 @@ describe 'Heap', ->
                 sortedArrayIndex -= 1
 
         it 'should extract the min value of a minHeap', ->
+            array = [3, 40, 20, 50, 1, 2, 444, 9, 50, 23, 132, 232, 134, 1, 455, 234, 1235, 9434, 4435, 22]
+            sortedArray = array.slice().sort((a, b) -> a - b) # copy and sort
+            heap = new Heap(array)
+
             heap.buildMinHeap(array)
 
             sortedArrayIndex = 0
