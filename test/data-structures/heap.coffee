@@ -30,7 +30,6 @@ describe 'Heap', ->
 
         it 'should build a min heap, so the parent value is always smaller than his children values', ->
             heap.buildMinHeap()
-            console.log array
 
             for index in [0...array.length]
                 leftChild = 2 * index + 1

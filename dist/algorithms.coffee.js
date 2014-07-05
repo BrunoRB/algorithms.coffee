@@ -322,12 +322,10 @@
     };
 
     Heap.prototype.bubbleUp = function(pos, compareFn) {
-      var aux, parentPos;
+      var parentPos, _ref;
       parentPos = Math.floor((pos - 1) / 2);
       if (parentPos >= 0 && compareFn(this.array[parentPos], this.array[pos])) {
-        aux = this.array[parentPos];
-        this.array[parentPos] = this.array[pos];
-        this.array[pos] = aux;
+        _ref = [this.array[parentPos], this.array[pos]], this.array[pos] = _ref[0], this.array[parentPos] = _ref[1];
         return this.bubbleUp(parentPos, compareFn);
       }
     };
@@ -761,6 +759,33 @@
   this.algCoffee = this.algCoffee ? this.algCoffee : {};
 
   this.algCoffee.karatsubaMultiplication = karatsubaMultiplication;
+
+}).call(this);
+;(function() {
+  var Heap, heapSort;
+
+  if (typeof module !== 'undefined') {
+    Heap = require('./../data-structures/heap').algCoffee.Heap;
+  } else {
+    Heap = algCoffee.Heap;
+  }
+
+  heapSort = function(array) {
+    var heap, length, _ref;
+    heap = new Heap(array);
+    heap.buildMaxHeap();
+    length = array.length;
+    while (length > 0) {
+      length -= 1;
+      _ref = [array[length], array[0]], array[0] = _ref[0], array[length] = _ref[1];
+      heap.maxHeapfy(0, length);
+    }
+    return array;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.heapSort = heapSort;
 
 }).call(this);
 ;(function() {

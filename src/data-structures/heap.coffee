@@ -58,9 +58,7 @@ class Heap
     bubbleUp: (pos, compareFn) ->
         parentPos = (pos - 1) // 2
         if parentPos >= 0 and compareFn(@array[parentPos], @array[pos])
-            aux = @array[parentPos]
-            @array[parentPos] = @array[pos]
-            @array[pos] = aux
+            [@array[pos], @array[parentPos]] = [@array[parentPos], @array[pos]]
             @bubbleUp(parentPos, compareFn)
 
 @algCoffee = if @algCoffee then @algCoffee else {}

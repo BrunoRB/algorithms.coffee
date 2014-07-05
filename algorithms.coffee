@@ -3,6 +3,7 @@ module.exports =
     insertionSort: require('./build/sorting/insertion-sort').algCoffee.insertionSort
     radixSort: require('./build/sorting/radix-sort').algCoffee.radixSort
     mergeSort: require('./build/sorting/merge-sort').algCoffee.mergeSort
+    heapSort: require('./build/sorting/heap-sort').algCoffee.heapSort
     karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication
     bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch
