@@ -37,6 +37,20 @@ class Heap
             return first > second
         @bubbleUp(@array.length - 1, isGreaterThan)
 
+    extractMax: () ->
+        lastPos = @array.length - 1
+        [@array[0], @array[lastPos]] = [@array[lastPos], @array[0]]
+        maxValue = @array.pop()
+        @maxHeapfy(0, @array.length)
+        return maxValue
+
+    extractMin: () ->
+        lastPos = @array.length - 1
+        [@array[0], @array[lastPos]] = [@array[lastPos], @array[0]]
+        minValue = @array.pop()
+        @minHeapfy(0, @array.length)
+        return minValue
+
     heapfy: (pos, arrayLength, compareFn, isMaxHeapfy) ->
         leftPos = 2 * pos + 1
         rightPos = 2 * (pos + 1)

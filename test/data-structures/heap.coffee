@@ -4,7 +4,7 @@ Heap = require('../../algorithms').Heap
 
 describe 'Heap', ->
 
-    describe 'Create a Heap object', ->
+    describe 'Create a Heap', ->
         array = [10, 30, 40, 2]
         heap = new Heap(array)
 
@@ -75,3 +75,27 @@ describe 'Heap', ->
                     expect(array[index]).to.be.at.most(array[leftChild])
                 if rightChild < array.length
                     expect(array[index]).to.be.at.most(array[rightChild])
+
+    describe 'Extract', ->
+        array = [3, 40, 20, 50, 1, 2, 444, 9, 50, 23, 132, 232, 134, 1, 455, 234, 1235, 9434, 4435, 22]
+        sortedArray = array.slice().sort((a, b) -> a - b) # copy and sort
+
+        heap = new Heap(array)
+
+        it 'should extract the max value of a maxHeap', ->
+            heap.buildMaxHeap(array)
+
+            sortedArrayIndex = sortedArray.length - 1
+            while array.length > 0
+                maxHeapValue = heap.extractMax()
+                expect(maxHeapValue).to.be.equal(sortedArray[sortedArrayIndex])
+                sortedArrayIndex -= 1
+
+        it 'should extract the min value of a minHeap', ->
+            heap.buildMinHeap(array)
+
+            sortedArrayIndex = 0
+            while array.length > 0
+                minHeapValue = heap.extractMin()
+                expect(minHeapValue).to.be.equal(sortedArray[sortedArrayIndex])
+                sortedArrayIndex += 1

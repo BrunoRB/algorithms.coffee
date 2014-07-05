@@ -316,6 +316,24 @@
       return this.bubbleUp(this.array.length - 1, isGreaterThan);
     };
 
+    Heap.prototype.extractMax = function() {
+      var lastPos, maxValue, _ref;
+      lastPos = this.array.length - 1;
+      _ref = [this.array[lastPos], this.array[0]], this.array[0] = _ref[0], this.array[lastPos] = _ref[1];
+      maxValue = this.array.pop();
+      this.maxHeapfy(0, this.array.length);
+      return maxValue;
+    };
+
+    Heap.prototype.extractMin = function() {
+      var lastPos, minValue, _ref;
+      lastPos = this.array.length - 1;
+      _ref = [this.array[lastPos], this.array[0]], this.array[0] = _ref[0], this.array[lastPos] = _ref[1];
+      minValue = this.array.pop();
+      this.minHeapfy(0, this.array.length);
+      return minValue;
+    };
+
     Heap.prototype.heapfy = function(pos, arrayLength, compareFn, isMaxHeapfy) {
       var largestPos, leftPos, rightPos, _ref;
       leftPos = 2 * pos + 1;
