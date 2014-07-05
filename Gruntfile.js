@@ -82,7 +82,7 @@ module.exports = function(grunt) {
 
 };
 
-var license = '/** \o
+var license = '/** \
     The MIT License (MIT)\n\
     Copyright (c) 2014 Bruno Roberto Búrigo\n\
     https://github.com/BrunoRB/algorithms.coffee\n\
