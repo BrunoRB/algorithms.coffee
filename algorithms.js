@@ -10,6 +10,7 @@ module.exports = {
   kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
   kruskal: require('./build/graph/kruskal').algCoffee.kruskal,
   editDistance: require('./build/string/edit-distance').algCoffee.editDistance,
+  knuthMorrisPratt: require('./build/string/knuth-morris-pratt').algCoffee.knuthMorrisPratt,
   longestCommonSubsequence: require('./build/string/longest-common-subsequence').algCoffee.longestCommonSubsequence,
   AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList,
   BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree,

@@ -1103,6 +1103,73 @@
 
 }).call(this);
 ;/*
+    @param {Array} text of Numbers, Strings or Characters
+        or {String}
+    @param {Array} pattern of Numbers, Strings or Characters
+        or {String}
+    @return {Number} the position where the pattern begins in the text
+        or the length of the text if the pattern doesn't exist in the text
+ */
+
+(function() {
+  var knuthMorrisPratt;
+
+  knuthMorrisPratt = function(text, pattern) {
+    var buildTable, i, m, patternLength, table, textLength;
+    buildTable = function() {
+      var cnd, i, pos, table, _i;
+      pos = 2;
+      cnd = 0;
+      table = [];
+      table.push(-1);
+      table.push(0);
+      for (i = _i = 2; _i < patternLength; i = _i += 1) {
+        table.push(0);
+      }
+      while (pos < patternLength) {
+        if (pattern[pos - 1] === pattern[cnd]) {
+          cnd += 1;
+          table[pos] = cnd;
+          pos += 1;
+        } else if (cnd > 0) {
+          cnd = table[cnd];
+        } else {
+          table[pos] = 0;
+          pos += 1;
+        }
+      }
+      return table;
+    };
+    textLength = text.length;
+    patternLength = pattern.length;
+    m = 0;
+    i = 0;
+    table = buildTable();
+    while (m + i < textLength) {
+      if (pattern[i] === text[m + i]) {
+        if (i === patternLength - 1) {
+          return m;
+        }
+        i += 1;
+      } else {
+        if (table[i] >= 0) {
+          i = table[i];
+          m = m + i - table[i];
+        } else {
+          i = 0;
+          m += 1;
+        }
+      }
+    }
+    return textLength;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.knuthMorrisPratt = knuthMorrisPratt;
+
+}).call(this);
+;/*
     @param{Array} the first sequence (of chars or ints)
     @param{Array} the second sequence (of chars or ints)
     @param{Boolean, optional}
