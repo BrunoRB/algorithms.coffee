@@ -72,6 +72,17 @@ module.exports = function(grunt) {
         ]
     );
 
+    // Minimized task(s).
+    grunt.registerTask(
+        'minimized',
+        [
+            'mkdir',
+            'coffee',
+            'coffeelint',
+            'mochaTest'
+        ]
+    );
+
 
     grunt.loadNpmTasks('grunt-mkdir');
     grunt.loadNpmTasks('grunt-contrib-coffee');
@@ -84,7 +95,7 @@ module.exports = function(grunt) {
 
 var licenseHeader = '/**\
     The MIT License (MIT)\n\
-    Copyright (c) 2014 Bruno Roberto Búrigo\n\
+    Copyright (c) 2014 Bruno Roberto Búrigo and Tayllan Búrigo\n\
     https://github.com/BrunoRB/algorithms.coffee';
 
 var license = licenseHeader + '\n\n\
