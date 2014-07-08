@@ -10,6 +10,46 @@ algorithms.coffee
 
 > It uses [Mocha](http://visionmedia.github.io/mocha/) as the Testing Framework, [Chai](http://chaijs.com/) as the Assertion Library and [CoffeeLint](http://www.coffeelint.org/) as the Style Checker Library.
 
+## Algorithms implemented so far:
+Data Structures:
+	* Adjacency List
+	* Binary Search Tree
+	* Disjoint Set
+	* Heap
+	* Segment Tree
+
+Graph:
+	- Shortest Path
+		* Bellman-Ford
+
+	- Traverse
+		* Breadth First Search
+		* Depth First Search
+
+	- Minimum Spanning Tree
+		* Kruskal
+	
+	- NetworkFlow
+		* Edmonds-Karp
+
+	- Strongly Connected Components
+		* Kosaraju
+
+Math:
+	* Karatusba Multiplication
+
+Sorting:
+	* Binary Tree Sort
+	* Heap Sort
+	* Insertion Sort
+	* Merge Sort
+	* Radix Sort
+
+String:
+	* Edit Distance
+	* Knuth-Morris-Pratt
+	* Longest Common Subsequence
+
 ## Getting Started
 ### Users
 #### NodeJS
@@ -63,9 +103,9 @@ improve the ones that are already implemented.
 #### Basic Requirements
 
 You will need to have the following softwares installed on your computer:
-* [NodeJS](http://nodejs.org/): version 0.10.0 or higher;
-* [npm](https://www.npmjs.org/): latest version;
-* [git](http://git-scm.com/): latest version;
+	* [NodeJS](http://nodejs.org/): version 0.10.0 or higher;
+	* [npm](https://www.npmjs.org/): latest version;
+	* [git](http://git-scm.com/): latest version;
 
 #### Basic Steps to Contribute
 
