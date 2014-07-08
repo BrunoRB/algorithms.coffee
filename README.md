@@ -12,43 +12,43 @@ algorithms.coffee
 
 ## Algorithms implemented so far: ##
 Data Structures:
-	* Adjacency List
-	* Binary Search Tree
-	* Disjoint Set
-	* Heap
-	* Segment Tree
+* Adjacency List
+* Binary Search Tree
+* Disjoint Set
+* Heap
+* Segment Tree
 
 Graph:
-	* Shortest Path
-		* Bellman-Ford
+- Shortest Path
+* Bellman-Ford
 
-	* Traverse
-		* Breadth First Search
-		* Depth First Search
+- Traverse
+* Breadth First Search
+* Depth First Search
 
-	* Minimum Spanning Tree
-		* Kruskal
-	
-	* NetworkFlow
-		* Edmonds-Karp
+- Minimum Spanning Tree
+* Kruskal
 
-	* Strongly Connected Components
-		* Kosaraju
+- NetworkFlow
+* Edmonds-Karp
+
+- Strongly Connected Components
+* Kosaraju
 
 Math:
-	* Karatusba Multiplication
+* Karatusba Multiplication
 
 Sorting:
-	* Binary Tree Sort
-	* Heap Sort
-	* Insertion Sort
-	* Merge Sort
-	* Radix Sort
+* Binary Tree Sort
+* Heap Sort
+* Insertion Sort
+* Merge Sort
+* Radix Sort
 
 String:
-	* Edit Distance
-	* Knuth-Morris-Pratt
-	* Longest Common Subsequence
+* Edit Distance
+* Knuth-Morris-Pratt
+* Longest Common Subsequence
 
 ## Getting Started
 ### Users
