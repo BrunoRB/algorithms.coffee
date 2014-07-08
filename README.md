@@ -10,7 +10,7 @@ algorithms.coffee
 
 > It uses [Mocha](http://visionmedia.github.io/mocha/) as the Testing Framework, [Chai](http://chaijs.com/) as the Assertion Library and [CoffeeLint](http://www.coffeelint.org/) as the Style Checker Library.
 
-## Algorithms implemented so far:
+## Algorithms implemented so far: ##
 Data Structures:
 	* Adjacency List
 	* Binary Search Tree
@@ -19,20 +19,20 @@ Data Structures:
 	* Segment Tree
 
 Graph:
-	- Shortest Path
+	* Shortest Path
 		* Bellman-Ford
 
-	- Traverse
+	* Traverse
 		* Breadth First Search
 		* Depth First Search
 
-	- Minimum Spanning Tree
+	* Minimum Spanning Tree
 		* Kruskal
 	
-	- NetworkFlow
+	* NetworkFlow
 		* Edmonds-Karp
 
-	- Strongly Connected Components
+	* Strongly Connected Components
 		* Kosaraju
 
 Math:
