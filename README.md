@@ -37,6 +37,7 @@ Graph:
 
 Math:
 * Karatusba Multiplication
+* Knuth Shuffle
 
 Sorting:
 * Binary Tree Sort

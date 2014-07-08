@@ -12,6 +12,8 @@ module.exports =
 
     karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication
 
+    knuthShuffle: require('./build/math/knuth-shuffle').algCoffee.knuthShuffle
+
     bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord
 
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch
