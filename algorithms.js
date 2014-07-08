@@ -9,6 +9,7 @@
     karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication,
     bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord,
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch,
+    breadthFirstSearch: require('./build/graph/breadth-first-search').algCoffee.breadthFirstSearch,
     edmondsKarp: require('./build/graph/edmonds-karp').algCoffee.edmondsKarp,
     kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
     kruskal: require('./build/graph/kruskal').algCoffee.kruskal,

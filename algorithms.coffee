@@ -16,6 +16,8 @@ module.exports =
 
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch
 
+    breadthFirstSearch: require('./build/graph/breadth-first-search').algCoffee.breadthFirstSearch
+
     edmondsKarp: require('./build/graph/edmonds-karp').algCoffee.edmondsKarp
 
     kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju

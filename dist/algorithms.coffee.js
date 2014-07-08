@@ -490,6 +490,41 @@
 
 }).call(this);
 ;(function() {
+  var breadthFirstSearch,
+    __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+
+  breadthFirstSearch = function(graph, fn) {
+    var queue, u, v, vertex, visited, _i, _j, _len, _len1, _ref, _ref1;
+    visited = {};
+    queue = [];
+    _ref = graph.vertices;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      vertex = _ref[_i];
+      queue.push(vertex);
+      while (queue.length > 0) {
+        v = queue.shift();
+        if (__indexOf.call(visited, v) >= 0 === false) {
+          if (fn != null) {
+            fn.call(graph, v);
+          }
+          visited[v] = true;
+          _ref1 = graph.getRoommates(v);
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            u = _ref1[_j];
+            queue.push(u);
+          }
+        }
+      }
+    }
+    return true;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.breadthFirstSearch = breadthFirstSearch;
+
+}).call(this);
+;(function() {
   var depthFirstSearch;
 
   depthFirstSearch = function(graph) {
