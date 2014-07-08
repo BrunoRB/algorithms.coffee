@@ -19,21 +19,21 @@ Data Structures:
 * Segment Tree
 
 Graph:
-- Shortest Path
-* Bellman-Ford
+* Shortest Path
+	* Bellman-Ford
 
-- Traverse
-* Breadth First Search
-* Depth First Search
+* Traverse
+	* Breadth First Search
+	* Depth First Search
 
-- Minimum Spanning Tree
-* Kruskal
+* Minimum Spanning Tree
+	* Kruskal
 
-- NetworkFlow
-* Edmonds-Karp
+* NetworkFlow
+	* Edmonds-Karp
 
-- Strongly Connected Components
-* Kosaraju
+* Strongly Connected Components
+	* Kosaraju
 
 Math:
 * Karatusba Multiplication
