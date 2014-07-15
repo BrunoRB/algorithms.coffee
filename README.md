@@ -38,6 +38,7 @@ Graph:
 Math:
 * Karatusba Multiplication
 * Knuth Shuffle
+* Reservoir Sampling
 
 Sorting:
 * Binary Tree Sort
