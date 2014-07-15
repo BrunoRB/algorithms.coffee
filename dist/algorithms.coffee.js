@@ -962,6 +962,33 @@
 
 }).call(this);
 ;(function() {
+  var reservoirSampling;
+
+  reservoirSampling = function(array, lengthOfSample) {
+    var i, j, length, reservoir, _i, _j, _ref;
+    length = array.length;
+    if (lengthOfSample > length) {
+      lengthOfSample = length;
+    }
+    reservoir = array.slice(0, lengthOfSample);
+    for (i = _i = 0; _i < lengthOfSample; i = _i += 1) {
+      reservoir[i] = array[i];
+    }
+    for (i = _j = _ref = lengthOfSample + 1; _j < length; i = _j += 1) {
+      j = Math.floor(Math.random() * (i + 1));
+      if (j < lengthOfSample) {
+        reservoir[j] = array[i];
+      }
+    }
+    return reservoir;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.reservoirSampling = reservoirSampling;
+
+}).call(this);
+;(function() {
   var BinarySearchTree, bstSort;
 
   if (typeof module !== 'undefined') {

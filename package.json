@@ -1,6 +1,6 @@
 {
     "name": "algorithms.coffee",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "description":
         "Classic algorithms and data structures in coffeescript. Making the World a better place, with coffee.",
     "directories": {

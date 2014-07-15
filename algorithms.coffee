@@ -14,6 +14,8 @@ module.exports =
 
     knuthShuffle: require('./build/math/knuth-shuffle').algCoffee.knuthShuffle
 
+    reservoirSampling: require('./build/math/reservoir-sampling').algCoffee.reservoirSampling
+
     bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord
 
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch
