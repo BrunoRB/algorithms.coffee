@@ -10,6 +10,8 @@ module.exports =
 
     bstSort: require('./build/sorting/bst-sort').algCoffee.bstSort
 
+    euclideanDistance: require('./build/math/euclidean-distance').algCoffee.euclideanDistance
+
     karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication
 
     knuthShuffle: require('./build/math/knuth-shuffle').algCoffee.knuthShuffle

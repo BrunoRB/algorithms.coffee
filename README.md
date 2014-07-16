@@ -36,6 +36,7 @@ Graph:
 	* Kosaraju
 
 Math:
+* Euclidean Distance
 * Karatusba Multiplication
 * Knuth Shuffle
 * Reservoir Sampling

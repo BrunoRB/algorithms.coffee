@@ -903,6 +903,35 @@
   this.algCoffee.kruskal = kruskal;
 
 }).call(this);
+;/*
+    @param{Object} the first cartesian point, with the X and Y properties
+    @param{Object} the second cartesian point, with the X and Y properties
+    @return{Number} the Euclidean Distance between the given points
+ */
+
+(function() {
+  var euclideanDistance;
+
+  euclideanDistance = function(pointA, pointB) {
+    var xSquared, ySquared;
+    if (pointA !== void 0 && pointB !== void 0) {
+      if (pointA.x === void 0 || pointA.y === void 0 || pointB.x === void 0 || pointB.y === void 0) {
+        return void 0;
+      } else {
+        xSquared = (pointB.x - pointA.x) * (pointB.x - pointA.x);
+        ySquared = (pointB.y - pointA.y) * (pointB.y - pointA.y);
+        return Math.sqrt(xSquared + ySquared);
+      }
+    } else {
+      return void 0;
+    }
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.euclideanDistance = euclideanDistance;
+
+}).call(this);
 ;(function() {
   var karatsubaMultiplication;
 
