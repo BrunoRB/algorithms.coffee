@@ -52,6 +52,7 @@ String:
 * Edit Distance
 * Knuth-Morris-Pratt
 * Longest Common Subsequence
+* Karp-Rabin
 
 ## Getting Started
 ### Users

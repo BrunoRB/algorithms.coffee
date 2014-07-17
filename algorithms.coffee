@@ -36,6 +36,8 @@ module.exports =
 
     longestCommonSubsequence: require('./build/string/longest-common-subsequence').algCoffee.longestCommonSubsequence
 
+    karpRabin: require('./build/string/karp-rabin').algCoffee.karpRabin
+
     AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList
 
     BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree
