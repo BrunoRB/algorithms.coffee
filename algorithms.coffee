@@ -18,6 +18,8 @@ module.exports =
 
     reservoirSampling: require('./build/math/reservoir-sampling').algCoffee.reservoirSampling
 
+    binarySearch: require('./build/search/binary-search').algCoffee.binarySearch
+
     bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord
 
     depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch

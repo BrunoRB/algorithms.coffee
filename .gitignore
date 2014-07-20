@@ -4,6 +4,7 @@ src/data-structures/*.js
 src/dynamic-programming/*.js
 src/graph/*.js
 src/math/*.js
+src/search/*.js
 src/sorting/*.js
 src/string/*.js
 test/**/*.js

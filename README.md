@@ -22,7 +22,7 @@ Graph:
 * Shortest Path
 	* Bellman-Ford
 
-* Traverse
+* Traversal
 	* Breadth First Search
 	* Depth First Search
 
@@ -40,6 +40,9 @@ Math:
 * Karatusba Multiplication
 * Knuth Shuffle
 * Reservoir Sampling
+
+Search:
+* Binary Search
 
 Sorting:
 * Binary Tree Sort
