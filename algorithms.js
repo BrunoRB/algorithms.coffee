@@ -13,6 +13,7 @@ module.exports = {
   bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord,
   depthFirstSearch: require('./build/graph/depth-first-search').algCoffee.depthFirstSearch,
   breadthFirstSearch: require('./build/graph/breadth-first-search').algCoffee.breadthFirstSearch,
+  cycleDetection: require('./build/graph/cycle-detection').algCoffee.cycleDetection,
   edmondsKarp: require('./build/graph/edmonds-karp').algCoffee.edmondsKarp,
   kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
   kruskal: require('./build/graph/kruskal').algCoffee.kruskal,

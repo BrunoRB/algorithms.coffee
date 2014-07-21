@@ -525,6 +525,37 @@
 
 }).call(this);
 ;(function() {
+  var AdjacencyList, cycleDetection;
+
+  AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
+
+  cycleDetection = function(graph) {
+    var currentVertex, list, roommates, target, visited, weight;
+    list = [];
+    visited = {};
+    list.push(graph.vertices[0]);
+    while (list.length > 0) {
+      currentVertex = list.shift();
+      visited[currentVertex] = true;
+      roommates = graph.getRoommates(currentVertex);
+      for (target in roommates) {
+        weight = roommates[target];
+        if (visited[target]) {
+          return true;
+        } else {
+          list.push(target);
+        }
+      }
+    }
+    return false;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.cycleDetection = cycleDetection;
+
+}).call(this);
+;(function() {
   var depthFirstSearch;
 
   depthFirstSearch = function(graph) {

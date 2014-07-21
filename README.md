@@ -19,21 +19,13 @@ Data Structures:
 * Segment Tree
 
 Graph:
-* Shortest Path
-	* Bellman-Ford
-
-* Traversal
-	* Breadth First Search
-	* Depth First Search
-
-* Minimum Spanning Tree
-	* Kruskal
-
-* NetworkFlow
-	* Edmonds-Karp
-
-* Strongly Connected Components
-	* Kosaraju
+* Bellman-Ford
+* Breadth First Search
+* Cycle Detection
+* Depth First Search
+* Edmonds-Karp
+* Kosaraju
+* Kruskal
 
 Math:
 * Euclidean Distance
