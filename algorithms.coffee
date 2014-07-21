@@ -16,6 +16,8 @@ module.exports =
 
     knuthShuffle: require('./build/math/knuth-shuffle').algCoffee.knuthShuffle
 
+    nextPermutation: require('./build/math/next-permutation').algCoffee.nextPermutation
+
     reservoirSampling: require('./build/math/reservoir-sampling').algCoffee.reservoirSampling
 
     binarySearch: require('./build/search/binary-search').algCoffee.binarySearch

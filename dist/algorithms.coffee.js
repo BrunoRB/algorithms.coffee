@@ -991,6 +991,44 @@
 
 }).call(this);
 ;(function() {
+  var nextPermutation;
+
+  nextPermutation = function(array) {
+    var element, i, index, k, l, length, tempArray, _i, _j, _k, _len, _ref, _ref1;
+    k = -1;
+    length = array.length;
+    for (i = _i = 0, _ref = length - 1; _i < _ref; i = _i += 1) {
+      if (array[i] < array[i + 1] && i > k) {
+        k = i;
+      }
+    }
+    if (k === -1) {
+      return array;
+    } else {
+      l = k + 1;
+      for (i = _j = l; _j < length; i = _j += 1) {
+        if (array[i] > array[k]) {
+          l = i;
+        }
+      }
+      _ref1 = [array[l], array[k]], array[k] = _ref1[0], array[l] = _ref1[1];
+      tempArray = array.slice(k + 1, length);
+      index = length - 1;
+      for (_k = 0, _len = tempArray.length; _k < _len; _k++) {
+        element = tempArray[_k];
+        array[index] = element;
+        index -= 1;
+      }
+      return array;
+    }
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.nextPermutation = nextPermutation;
+
+}).call(this);
+;(function() {
   var reservoirSampling;
 
   reservoirSampling = function(array, lengthOfSample) {

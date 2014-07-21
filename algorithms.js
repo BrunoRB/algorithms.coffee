@@ -7,6 +7,7 @@ module.exports = {
   euclideanDistance: require('./build/math/euclidean-distance').algCoffee.euclideanDistance,
   karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication,
   knuthShuffle: require('./build/math/knuth-shuffle').algCoffee.knuthShuffle,
+  nextPermutation: require('./build/math/next-permutation').algCoffee.nextPermutation,
   reservoirSampling: require('./build/math/reservoir-sampling').algCoffee.reservoirSampling,
   binarySearch: require('./build/search/binary-search').algCoffee.binarySearch,
   bellmanFord: require('./build/graph/bellman-ford').algCoffee.bellmanFord,

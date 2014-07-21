@@ -39,6 +39,7 @@ Math:
 * Euclidean Distance
 * Karatusba Multiplication
 * Knuth Shuffle
+* Next Permutation
 * Reservoir Sampling
 
 Search:
