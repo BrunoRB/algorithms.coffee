@@ -1549,3 +1549,52 @@
   this.algCoffee.longestCommonSubsequence = longestCommonSubsequence;
 
 }).call(this);
+;(function() {
+  var Comparator;
+
+  Comparator = (function() {
+    function Comparator(compareFn) {
+      if (compareFn !== void 0) {
+        this.compare = compareFn;
+      }
+    }
+
+    Comparator.prototype.compare = function(a, b) {
+      if (a === b) {
+        return 0;
+      } else if (a < b) {
+        return -1;
+      } else {
+        return 1;
+      }
+    };
+
+    Comparator.prototype.equal = function(a, b) {
+      return this.compare(a, b) === 0;
+    };
+
+    Comparator.prototype.lesserThan = function(a, b) {
+      return this.compare(a, b) < 0;
+    };
+
+    Comparator.prototype.lesserThanOrEqual = function(a, b) {
+      return this.lesserThan(a, b) || this.equal(a, b);
+    };
+
+    Comparator.prototype.greaterThan = function(a, b) {
+      return this.compare(a, b) > 0;
+    };
+
+    Comparator.prototype.greaterThanOrEqual = function(a, b) {
+      return this.greaterThan(a, b) || this.equal(a, b);
+    };
+
+    return Comparator;
+
+  })();
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.Comparator = Comparator;
+
+}).call(this);

@@ -25,5 +25,6 @@ module.exports = {
   BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree,
   Heap: require('./build/data-structures/heap').algCoffee.Heap,
   DisjointSet: require('./build/data-structures/disjoint-set').algCoffee.DisjointSet,
-  SegmentTree: require('./build/data-structures/segment-tree').algCoffee.SegmentTree
+  SegmentTree: require('./build/data-structures/segment-tree').algCoffee.SegmentTree,
+  Comparator: require('./build/util/comparator').algCoffee.Comparator
 };

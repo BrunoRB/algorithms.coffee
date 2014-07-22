@@ -53,3 +53,5 @@ module.exports =
     DisjointSet: require('./build/data-structures/disjoint-set').algCoffee.DisjointSet
 
     SegmentTree: require('./build/data-structures/segment-tree').algCoffee.SegmentTree
+
+    Comparator: require('./build/util/comparator').algCoffee.Comparator
