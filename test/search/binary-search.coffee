@@ -27,3 +27,30 @@ describe 'Binary Search', ->
             assert.strictEqual binarySearch(array, 90), -1, 'This value doesn\'t exist on the array'
             assert.strictEqual binarySearch(array, 4), -1, 'This value doesn\'t exist on the array'
             assert.strictEqual binarySearch(array, 54), -1, 'This value doesn\'t exist on the array'
+
+    describe 'Search for a value inside an Array of Objects', ->
+        it 'should search for a value inside an Array of Objects with a Custom Compartor', ->
+            array = [
+                'a',
+                'ab',
+                'abc',
+                'abcd',
+                'abcde'
+            ]
+            compareFn = (a, b) ->
+                if a.length is b.length
+                    return 0
+                else if a.length < b.length
+                    return -1
+                else
+                    return 1
+
+            # the only property considered in the search is the length of the word
+            assert.strictEqual binarySearch(array, '1', compareFn), 0, 'A word of length 1'
+            assert.strictEqual binarySearch(array, '22', compareFn), 1, 'A word of length 2'
+            assert.strictEqual binarySearch(array, '333', compareFn), 2, 'A word of length 3'
+            assert.strictEqual binarySearch(array, '4444', compareFn), 3, 'A word of length 4'
+            assert.strictEqual binarySearch(array, '55555', compareFn), 4, 'A word of length 5'
+
+            assert.strictEqual binarySearch(array, {length: 7}, compareFn), -1,
+                'There is no word of length 7 in the array'

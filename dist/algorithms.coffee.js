@@ -1087,17 +1087,24 @@
 
 }).call(this);
 ;(function() {
-  var binarySearch;
+  var Comparator, binarySearch;
 
-  binarySearch = function(array, number) {
-    var half, inferiorLimit, superiorLimit;
+  if (typeof module !== 'undefined') {
+    Comparator = require('./../util/comparator').algCoffee.Comparator;
+  } else {
+    Comparator = algCoffee.Comparator;
+  }
+
+  binarySearch = function(array, number, compareFn) {
+    var comparator, half, inferiorLimit, superiorLimit;
     inferiorLimit = 0;
     superiorLimit = array.length - 1;
+    comparator = new Comparator(compareFn);
     while (superiorLimit >= inferiorLimit) {
       half = parseInt((superiorLimit + inferiorLimit) / 2);
-      if (array[half] === number) {
+      if (comparator.equal(array[half], number)) {
         return half;
-      } else if (array[half] > number) {
+      } else if (comparator.greaterThan(array[half], number)) {
         superiorLimit = half - 1;
       } else {
         inferiorLimit = half + 1;
