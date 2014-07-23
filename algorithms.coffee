@@ -46,6 +46,8 @@ module.exports =
 
     AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList
 
+    AdjacencyMatrix: require('./build/data-structures/adjacency-matrix').algCoffee.AdjacencyMatrix
+
     BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree
 
     Heap: require('./build/data-structures/heap').algCoffee.Heap

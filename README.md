@@ -13,6 +13,7 @@ algorithms.coffee
 ## Algorithms implemented so far:
 Data Structures:
 * Adjacency List
+* Adjacency Matrix
 * Binary Search Tree
 * Disjoint Set
 * Heap

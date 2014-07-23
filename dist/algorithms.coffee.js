@@ -87,6 +87,94 @@
 
 }).call(this);
 ;(function() {
+  var AdjacencyMatrix;
+
+  AdjacencyMatrix = (function() {
+    function AdjacencyMatrix(directed) {
+      this.directed = directed != null ? directed : true;
+      this.adjacencyMatrix = [];
+      this.mapping = {};
+      this.amountOfVertices = 0;
+      this.amountOfEdges = 0;
+    }
+
+    AdjacencyMatrix.prototype.addVertex = function(vertex) {
+      var i, _i, _ref;
+      this.mapping[vertex] = this.amountOfVertices;
+      this.adjacencyMatrix.push([]);
+      for (i = _i = 0, _ref = this.amountOfVertices; _i <= _ref; i = _i += 1) {
+        this.adjacencyMatrix[this.amountOfVertices][i] = void 0;
+        this.adjacencyMatrix[i][this.amountOfVertices] = void 0;
+      }
+      return this.amountOfVertices += 1;
+    };
+
+    AdjacencyMatrix.prototype.addEdge = function(source, target, weight) {
+      var sourceIndex, targetIndex;
+      if (weight == null) {
+        weight = 1;
+      }
+      if (this.mapping[source] === void 0) {
+        this.addVertex(source);
+      }
+      if (this.mapping[target] === void 0) {
+        this.addVertex(target);
+      }
+      sourceIndex = this.mapping[source];
+      targetIndex = this.mapping[target];
+      this.adjacencyMatrix[sourceIndex][targetIndex] = weight;
+      this.amountOfEdges += 1;
+      if (!this.directed) {
+        this.adjacencyMatrix[targetIndex][sourceIndex] = weight;
+        return this.amountOfEdges += 1;
+      }
+    };
+
+    AdjacencyMatrix.prototype.deleteEdge = function(source, target) {
+      var sourceIndex, targetIndex;
+      if (this.mapping[source] !== void 0 && this.mapping[target] !== void 0) {
+        sourceIndex = this.mapping[source];
+        targetIndex = this.mapping[target];
+        this.adjacencyMatrix[sourceIndex][targetIndex] = void 0;
+        this.amountOfEdges -= 1;
+        if (!this.directed) {
+          this.adjacencyMatrix[targetIndex][sourceIndex] = void 0;
+          return this.amountOfEdges -= 1;
+        }
+      }
+    };
+
+    AdjacencyMatrix.prototype.getEdgeWeight = function(source, target) {
+      var sourceIndex, targetIndex;
+      if (this.mapping[source] !== void 0 && this.mapping[target] !== void 0) {
+        sourceIndex = this.mapping[source];
+        targetIndex = this.mapping[target];
+        return this.adjacencyMatrix[sourceIndex][targetIndex];
+      }
+    };
+
+    AdjacencyMatrix.prototype.getRoommates = function(vertex) {
+      var vertexIndex;
+      if (this.mapping[vertex] !== void 0) {
+        vertexIndex = this.mapping[vertex];
+        return this.adjacencyMatrix[vertexIndex];
+      }
+    };
+
+    AdjacencyMatrix.prototype.toString = function() {
+      return 'Adjacency Matrix with ' + this.amountOfVertices + ' vertices and ' + this.amountOfEdges + ' edges.';
+    };
+
+    return AdjacencyMatrix;
+
+  })();
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.AdjacencyMatrix = AdjacencyMatrix;
+
+}).call(this);
+;(function() {
   var BinarySearchTree;
 
   BinarySearchTree = (function() {

@@ -22,6 +22,7 @@ module.exports = {
   longestCommonSubsequence: require('./build/string/longest-common-subsequence').algCoffee.longestCommonSubsequence,
   karpRabin: require('./build/string/karp-rabin').algCoffee.karpRabin,
   AdjacencyList: require('./build/data-structures/adjacency-list').algCoffee.AdjacencyList,
+  AdjacencyMatrix: require('./build/data-structures/adjacency-matrix').algCoffee.AdjacencyMatrix,
   BinarySearchTree: require('./build/data-structures/binary-search-tree').algCoffee.BinarySearchTree,
   Heap: require('./build/data-structures/heap').algCoffee.Heap,
   DisjointSet: require('./build/data-structures/disjoint-set').algCoffee.DisjointSet,
