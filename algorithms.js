@@ -4,6 +4,7 @@ module.exports = {
   mergeSort: require('./build/sorting/merge-sort').algCoffee.mergeSort,
   heapSort: require('./build/sorting/heap-sort').algCoffee.heapSort,
   bstSort: require('./build/sorting/bst-sort').algCoffee.bstSort,
+  selectionSort: require('./build/sorting/selection-sort').algCoffee.selectionSort,
   euclideanDistance: require('./build/math/euclidean-distance').algCoffee.euclideanDistance,
   karatsubaMultiplication: require('./build/math/karatsuba-multiplication').algCoffee.karatsubaMultiplication,
   knuthShuffle: require('./build/math/knuth-shuffle').algCoffee.knuthShuffle,

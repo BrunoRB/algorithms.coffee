@@ -1393,6 +1393,44 @@
 
 }).call(this);
 ;(function() {
+  var Comparator, selectionSort;
+
+  if (typeof module !== 'undefined') {
+    Comparator = require('./../util/comparator').algCoffee.Comparator;
+  } else {
+    Comparator = algCoffee.Comparator;
+  }
+
+  selectionSort = function(array, compareFn) {
+    var comparator, findSmallestElementIndex, i, length, smallestElementIndex, _i, _ref;
+    comparator = new Comparator(compareFn);
+    length = array.length;
+    findSmallestElementIndex = function(startIndex) {
+      var i, smallestElement, smallestElementIndex, _i;
+      smallestElement = array[startIndex];
+      smallestElementIndex = startIndex;
+      startIndex += 1;
+      for (i = _i = startIndex; _i < length; i = _i += 1) {
+        if (comparator.lesserThan(array[i], smallestElement)) {
+          smallestElement = array[i];
+          smallestElementIndex = i;
+        }
+      }
+      return smallestElementIndex;
+    };
+    for (i = _i = 0; _i < length; i = _i += 1) {
+      smallestElementIndex = findSmallestElementIndex(i);
+      _ref = [array[smallestElementIndex], array[i]], array[i] = _ref[0], array[smallestElementIndex] = _ref[1];
+    }
+    return array;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.selectionSort = selectionSort;
+
+}).call(this);
+;(function() {
   var editDistance;
 
   editDistance = function(firstSequence, secondSequence, operationCost) {

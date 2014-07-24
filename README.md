@@ -44,6 +44,7 @@ Sorting:
 * Insertion Sort
 * Merge Sort
 * Radix Sort
+* Selection Sort
 
 String:
 * Edit Distance
