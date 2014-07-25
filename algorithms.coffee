@@ -34,6 +34,8 @@ module.exports =
 
     edmondsKarp: require('./build/graph/edmonds-karp').algCoffee.edmondsKarp
 
+    floydWarshall: require('./build/graph/floyd-warshall').algCoffee.floydWarshall
+
     kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju
 
     kruskal: require('./build/graph/kruskal').algCoffee.kruskal

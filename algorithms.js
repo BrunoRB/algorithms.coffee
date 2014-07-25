@@ -16,6 +16,7 @@ module.exports = {
   breadthFirstSearch: require('./build/graph/breadth-first-search').algCoffee.breadthFirstSearch,
   cycleDetection: require('./build/graph/cycle-detection').algCoffee.cycleDetection,
   edmondsKarp: require('./build/graph/edmonds-karp').algCoffee.edmondsKarp,
+  floydWarshall: require('./build/graph/floyd-warshall').algCoffee.floydWarshall,
   kosaraju: require('./build/graph/kosaraju').algCoffee.kosaraju,
   kruskal: require('./build/graph/kruskal').algCoffee.kruskal,
   editDistance: require('./build/string/edit-distance').algCoffee.editDistance,

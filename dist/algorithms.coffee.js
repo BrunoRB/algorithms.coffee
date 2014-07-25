@@ -793,6 +793,54 @@
 
 }).call(this);
 ;(function() {
+  var floydWarshall;
+
+  floydWarshall = function(graph) {
+    var adjacencyMatrix, auxiliaryMatrix, createEmptyMatrix, i, j, k, length, newMatrix, value, _i, _j, _k, _l, _m, _n;
+    createEmptyMatrix = function(length) {
+      var emptyMatrix, i, j, _i, _j;
+      emptyMatrix = [];
+      for (i = _i = 0; _i < length; i = _i += 1) {
+        emptyMatrix.push([]);
+        for (j = _j = 0; _j < length; j = _j += 1) {
+          emptyMatrix[i].push(0);
+        }
+      }
+      return emptyMatrix;
+    };
+    length = graph.amountOfVertices;
+    adjacencyMatrix = graph.adjacencyMatrix;
+    auxiliaryMatrix = [];
+    for (i = _i = 0; _i < length; i = _i += 1) {
+      auxiliaryMatrix.push([]);
+      for (j = _j = 0; _j < length; j = _j += 1) {
+        value = adjacencyMatrix[i][j] === void 0 ? Infinity : adjacencyMatrix[i][j];
+        auxiliaryMatrix[i].push(value);
+      }
+    }
+    for (k = _k = 0; _k < length; k = _k += 1) {
+      newMatrix = createEmptyMatrix(length);
+      for (i = _l = 0; _l < length; i = _l += 1) {
+        for (j = _m = 0; _m < length; j = _m += 1) {
+          newMatrix[i][j] = Math.min(auxiliaryMatrix[i][j], auxiliaryMatrix[i][k] + auxiliaryMatrix[k][j]);
+        }
+      }
+      auxiliaryMatrix = newMatrix;
+    }
+    for (i = _n = 0; _n < length; i = _n += 1) {
+      if (auxiliaryMatrix[i][i] < 0) {
+        return adjacencyMatrix;
+      }
+    }
+    return auxiliaryMatrix;
+  };
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.floydWarshall = floydWarshall;
+
+}).call(this);
+;(function() {
   var AdjacencyList, fordFulkerson;
 
   if (typeof module !== 'undefined') {

@@ -25,6 +25,7 @@ Graph:
 * Cycle Detection
 * Depth First Search
 * Edmonds-Karp
+* Floyd-Warshall
 * Kosaraju
 * Kruskal
 
