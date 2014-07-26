@@ -1,12 +1,12 @@
 ### @author Tayllan Búrigo 2014 ###
 
-assert = require('chai').assert
+expect = require('chai').expect
 depthFirstSearch = require('../../algorithms').depthFirstSearch
 AdjacencyList = require('../../algorithms').AdjacencyList
 
 describe 'Depth First Search', ->
 
-    describe 'Depth First Search with finishing times in a Directed Graph', ->
+    describe 'Depth First Search in a Directed Graph with Simple function', ->
         directedGraph = new AdjacencyList
 
         directedGraph.addEdge 'a', 'b'
@@ -16,34 +16,42 @@ describe 'Depth First Search', ->
         directedGraph.addEdge 'e', 'd'
         directedGraph.addVertex 'f'
 
-        it 'should get the finishing times for the dfs in the Directed Graph', ->
-            finishingTimes = depthFirstSearch(directedGraph)
+        it 'should simply traverse the graph', ->
+            expect(depthFirstSearch(directedGraph)).to.be.equal true
 
-            assert.isObject(finishingTimes, 'FinishingTimes is a object')
-            assert.isUndefined(finishingTimes['no'], 'There isn\'t a NO vertex')
+        it 'should add a new edge that points to all other vertices on the graph', ->
+            fn = (vertex) ->
+                @addEdge 'k', vertex
 
-            assert.strictEqual(finishingTimes['a'], 4, 'A was the fifth to finish')
-            assert.strictEqual(finishingTimes['b'], 0, 'B was the first to finish')
-            assert.strictEqual(finishingTimes['c'], 3, 'C was the fourth to finish')
-            assert.strictEqual(finishingTimes['d'], 1, 'D was the second to finish')
-            assert.strictEqual(finishingTimes['e'], 2, 'E was the third to finish')
-            assert.strictEqual(finishingTimes['f'], 5, 'F was the sixth to finish')
+            expect(depthFirstSearch(directedGraph, fn)).to.be.equal true
 
-    describe 'Depth First Search with finishing times in a Undirected Graph', ->
-        undirectedGraph = new AdjacencyList false
+            expect(directedGraph.edges).to.have.property 'k'
 
-        undirectedGraph.addEdge 'a', 'b'
-        undirectedGraph.addEdge 'a', 'c'
-        undirectedGraph.addEdge 'b', 'c'
-        undirectedGraph.addVertex 'd'
+            for i in ['a', 'b', 'c', 'd', 'e', 'f']
+                expect(directedGraph.edges.k).to.have.property i
 
-        it 'should get the finishing times for the dfs in the Undirected Graph', ->
-            finishingTimes = depthFirstSearch(undirectedGraph)
+    describe 'Depth First Search in a Directed Graph with Finishing Queue function', ->
+        directedGraph = new AdjacencyList
 
-            assert.isObject(finishingTimes, 'FinishingTimes is a object')
-            assert.isUndefined(finishingTimes['no'], 'There isn\'t a NO vertex')
+        directedGraph.addEdge 'a', 'b'
+        directedGraph.addEdge 'a', 'c'
+        directedGraph.addEdge 'd', 'a'
+        directedGraph.addEdge 'c', 'e'
+        directedGraph.addEdge 'e', 'd'
+        directedGraph.addVertex 'f'
 
-            assert.strictEqual(finishingTimes['a'], 2, 'A was the third to finish')
-            assert.strictEqual(finishingTimes['b'], 1, 'A was the second to finish')
-            assert.strictEqual(finishingTimes['c'], 0, 'A was the first to finish')
-            assert.strictEqual(finishingTimes['d'], 3, 'A was the fourth to finish')
+        # adding the needed attribute
+        directedGraph.finishingQueue = []
+
+        it 'should simply traverse the graph', ->
+            expect(depthFirstSearch(directedGraph)).to.be.equal true
+
+        it 'should add the vertices to the finishingQueue in the order in which they are visited', ->
+            fn = (vertex) ->
+                @finishingQueue.push vertex
+
+            correctOrder = ['b', 'd', 'e', 'c', 'a', 'f']
+
+            expect(depthFirstSearch(directedGraph, fn)).to.be.equal true
+
+            expect(directedGraph.finishingQueue).to.be.deep.equal correctOrder

@@ -1,9 +1,7 @@
 ### @author Tayllan Búrigo 2014 ###
 
-depthFirstSearch = (graph) ->
-    time = 0
+depthFirstSearch = (graph, fn) ->
     visitedVertices = {}
-    finishingTimes = {}
 
     dfs = (vertex) ->
         visitedVertices[vertex] = true
@@ -12,14 +10,13 @@ depthFirstSearch = (graph) ->
             if visitedVertices[roommate] is undefined
                 dfs(roommate)
 
-        finishingTimes[vertex] = time
-        time += 1
+        fn?.call(graph, vertex)
 
     for vertex in graph.vertices
         if visitedVertices[vertex] is undefined
             dfs(vertex)
 
-    return finishingTimes
+    return true
 
 @algCoffee = if @algCoffee then @algCoffee else {}
 @algCoffee.depthFirstSearch = depthFirstSearch

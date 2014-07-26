@@ -8,7 +8,7 @@ else
     AdjacencyList = algCoffee.AdjacencyList
 
 kosaraju = (graph) ->
-    revertGraph = () ->
+    getReverseGraph = () ->
         reverseGraph = new AdjacencyList(graph.directed)
 
         for vertex in graph.vertices
@@ -18,7 +18,9 @@ kosaraju = (graph) ->
             for target, weight of value
                 reverseGraph.addEdge(target, source, weight)
 
-        graph = reverseGraph
+        reverseGraph.finishingQueue = graph.finishingQueue
+
+        return reverseGraph
 
     mappingComponents = (vertex) ->
         stack = []
@@ -31,28 +33,30 @@ kosaraju = (graph) ->
             visitedVertices[currentVertex] = true
             localComponent.push(currentVertex)
 
-            for vertex, weight of graph.getRoommates(currentVertex)
+            for vertex, weight of reverseGraph.getRoommates(currentVertex)
                 if visitedVertices[vertex] is undefined
                     stack.push(vertex)
 
         return localComponent
 
-    finishingTimes = depthFirstSearch(graph)
-    sortedFinishingTimes = []
+    fn = (vertex) ->
+        @finishingQueue.push(vertex)
 
-    for vertex, finishingTime of finishingTimes
-        sortedFinishingTimes.push([vertex, finishingTime])
-
-    sortedFinishingTimes.sort((a, b) -> return b[1] - a[1])
+    # adding the needed attribute
+    graph.finishingQueue = []
+    depthFirstSearch(graph, fn)
+    graph.finishingQueue = graph.finishingQueue.reverse()
 
     connectedComponents = []
     visitedVertices = {}
-    revertGraph()
+    reverseGraph = getReverseGraph()
 
-    for vertexArray in sortedFinishingTimes
-        vertex = vertexArray[0]
+    for vertex in graph.finishingQueue
         if visitedVertices[vertex] is undefined
             connectedComponents.push(mappingComponents(vertex))
+
+    # deleting the new attribute to avoid possible conflicts
+    delete graph.finishingQueue
 
     return connectedComponents
 

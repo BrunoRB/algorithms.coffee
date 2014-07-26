@@ -646,11 +646,9 @@
 ;(function() {
   var depthFirstSearch;
 
-  depthFirstSearch = function(graph) {
-    var dfs, finishingTimes, time, vertex, visitedVertices, _i, _len, _ref;
-    time = 0;
+  depthFirstSearch = function(graph, fn) {
+    var dfs, vertex, visitedVertices, _i, _len, _ref;
     visitedVertices = {};
-    finishingTimes = {};
     dfs = function(vertex) {
       var roommate, weight, _ref;
       visitedVertices[vertex] = true;
@@ -661,8 +659,7 @@
           dfs(roommate);
         }
       }
-      finishingTimes[vertex] = time;
-      return time += 1;
+      return fn != null ? fn.call(graph, vertex) : void 0;
     };
     _ref = graph.vertices;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -671,7 +668,7 @@
         dfs(vertex);
       }
     }
-    return finishingTimes;
+    return true;
   };
 
   this.algCoffee = this.algCoffee ? this.algCoffee : {};
@@ -965,8 +962,8 @@
   }
 
   kosaraju = function(graph) {
-    var connectedComponents, finishingTime, finishingTimes, mappingComponents, revertGraph, sortedFinishingTimes, vertex, vertexArray, visitedVertices, _i, _len;
-    revertGraph = function() {
+    var connectedComponents, fn, getReverseGraph, mappingComponents, reverseGraph, vertex, visitedVertices, _i, _len, _ref;
+    getReverseGraph = function() {
       var reverseGraph, source, target, value, vertex, weight, _i, _len, _ref, _ref1;
       reverseGraph = new AdjacencyList(graph.directed);
       _ref = graph.vertices;
@@ -982,7 +979,8 @@
           reverseGraph.addEdge(target, source, weight);
         }
       }
-      return graph = reverseGraph;
+      reverseGraph.finishingQueue = graph.finishingQueue;
+      return reverseGraph;
     };
     mappingComponents = function(vertex) {
       var currentVertex, localComponent, stack, weight, _ref;
@@ -993,7 +991,7 @@
         currentVertex = stack.pop();
         visitedVertices[currentVertex] = true;
         localComponent.push(currentVertex);
-        _ref = graph.getRoommates(currentVertex);
+        _ref = reverseGraph.getRoommates(currentVertex);
         for (vertex in _ref) {
           weight = _ref[vertex];
           if (visitedVertices[vertex] === void 0) {
@@ -1003,25 +1001,23 @@
       }
       return localComponent;
     };
-    finishingTimes = depthFirstSearch(graph);
-    sortedFinishingTimes = [];
-    for (vertex in finishingTimes) {
-      finishingTime = finishingTimes[vertex];
-      sortedFinishingTimes.push([vertex, finishingTime]);
-    }
-    sortedFinishingTimes.sort(function(a, b) {
-      return b[1] - a[1];
-    });
+    fn = function(vertex) {
+      return this.finishingQueue.push(vertex);
+    };
+    graph.finishingQueue = [];
+    depthFirstSearch(graph, fn);
+    graph.finishingQueue = graph.finishingQueue.reverse();
     connectedComponents = [];
     visitedVertices = {};
-    revertGraph();
-    for (_i = 0, _len = sortedFinishingTimes.length; _i < _len; _i++) {
-      vertexArray = sortedFinishingTimes[_i];
-      vertex = vertexArray[0];
+    reverseGraph = getReverseGraph();
+    _ref = graph.finishingQueue;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      vertex = _ref[_i];
       if (visitedVertices[vertex] === void 0) {
         connectedComponents.push(mappingComponents(vertex));
       }
     }
+    delete graph.finishingQueue;
     return connectedComponents;
   };
 
