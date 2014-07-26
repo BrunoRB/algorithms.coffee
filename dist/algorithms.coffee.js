@@ -615,7 +615,11 @@
 ;(function() {
   var AdjacencyList, cycleDetection;
 
-  AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
+  if (typeof module !== 'undefined') {
+    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
+  } else {
+    AdjacencyList = algCoffee.AdjacencyList;
+  }
 
   cycleDetection = function(graph) {
     var currentVertex, list, roommates, target, visited, weight;
@@ -1064,6 +1068,24 @@
   this.algCoffee = this.algCoffee ? this.algCoffee : {};
 
   this.algCoffee.kruskal = kruskal;
+
+}).call(this);
+;(function() {
+  var AdjacencyList, depthFirstSearch, topologicalSorting;
+
+  if (typeof module !== 'undefined') {
+    depthFirstSearch = require('./depth-first-search').algCoffee.depthFirstSearch;
+    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
+  } else {
+    depthFirstSearch = algCoffee.depthFirstSearch;
+    AdjacencyList = algCoffee.AdjacencyList;
+  }
+
+  topologicalSorting = function(graph) {};
+
+  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+
+  this.algCoffee.topologicalSorting = topologicalSorting;
 
 }).call(this);
 ;/*

@@ -1,6 +1,9 @@
 ### @author Tayllan Búrigo 2014 ###
 
-AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList
+if typeof module isnt 'undefined'
+    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList
+else
+    AdjacencyList = algCoffee.AdjacencyList
 
 cycleDetection = (graph) ->
     list = []
