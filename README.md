@@ -53,9 +53,6 @@ String:
 * Longest Common Subsequence
 * Karp-Rabin
 
-Util:
-* Comparator
-
 ## Getting Started
 ### Users
 #### NodeJS
