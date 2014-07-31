@@ -613,30 +613,33 @@
 
 }).call(this);
 ;(function() {
-  var AdjacencyList, cycleDetection;
-
-  if (typeof module !== 'undefined') {
-    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
-  } else {
-    AdjacencyList = algCoffee.AdjacencyList;
-  }
+  var cycleDetection;
 
   cycleDetection = function(graph) {
-    var currentVertex, list, roommates, target, visited, weight;
-    list = [];
+    var dfs, recursionStack, vertex, visited, _i, _len, _ref;
+    recursionStack = {};
     visited = {};
-    list.push(graph.vertices[0]);
-    while (list.length > 0) {
-      currentVertex = list.shift();
-      visited[currentVertex] = true;
-      roommates = graph.getRoommates(currentVertex);
+    dfs = function(vertex) {
+      var roommates, target, weight;
+      visited[vertex] = true;
+      recursionStack[vertex] = true;
+      roommates = graph.getRoommates(vertex);
       for (target in roommates) {
         weight = roommates[target];
-        if (visited[target]) {
+        if (visited[target] === void 0 && dfs(target)) {
           return true;
-        } else {
-          list.push(target);
+        } else if (recursionStack[target]) {
+          return true;
         }
+      }
+      delete recursionStack[vertex];
+      return false;
+    };
+    _ref = graph.vertices;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      vertex = _ref[_i];
+      if (dfs(vertex)) {
+        return true;
       }
     }
     return false;
@@ -1071,21 +1074,47 @@
 
 }).call(this);
 ;(function() {
-  var AdjacencyList, depthFirstSearch, topologicalSorting;
+  var AdjacencyList, cycleDetection, depthFirstSearch, graph, topologicalSorting;
 
   if (typeof module !== 'undefined') {
     depthFirstSearch = require('./depth-first-search').algCoffee.depthFirstSearch;
+    cycleDetection = require('./cycle-detection').algCoffee.cycleDetection;
     AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList;
   } else {
     depthFirstSearch = algCoffee.depthFirstSearch;
+    cycleDetection = algCoffee.cycleDetection;
     AdjacencyList = algCoffee.AdjacencyList;
   }
 
-  topologicalSorting = function(graph) {};
+  topologicalSorting = function(graph) {
+    var fn, queue;
+    if (cycleDetection(graph)) {
+      return [];
+    } else {
+      graph.finishingQueue = [];
+      fn = function(vertex) {
+        return this.finishingQueue.push(vertex);
+      };
+      depthFirstSearch(graph, fn);
+      queue = graph.finishingQueue.reverse();
+      delete graph.finishingQueue;
+      return queue;
+    }
+  };
 
-  this.algCoffee = this.algCoffee ? this.algCoffee : {};
+  graph = new AdjacencyList();
 
-  this.algCoffee.topologicalSorting = topologicalSorting;
+  graph.addEdge('a', 'b');
+
+  graph.addEdge('a', 'c');
+
+  graph.addEdge('c', 'b');
+
+  graph.addEdge('b', 'd');
+
+  graph.addEdge('b', 'e');
+
+  console.log(topologicalSorting(graph));
 
 }).call(this);
 ;/*

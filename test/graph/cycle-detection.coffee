@@ -29,3 +29,14 @@ describe 'Cycle Detection', ->
             undirectedGraph.addEdge 'a', 'b'
 
             expect(cycleDetection(undirectedGraph)).to.be.true
+
+        it 'should assert that this graph has no cycles', ->
+            graphWithoutCycle = new AdjacencyList true
+
+            graphWithoutCycle.addEdge 'a', 'b'
+            graphWithoutCycle.addEdge 'a', 'c'
+            graphWithoutCycle.addEdge 'c', 'b'
+            graphWithoutCycle.addEdge 'b', 'd'
+            graphWithoutCycle.addEdge 'b', 'e'
+
+            expect(cycleDetection(graphWithoutCycle)).to.be.false

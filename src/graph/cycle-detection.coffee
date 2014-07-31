@@ -1,26 +1,26 @@
 ### @author Tayllan Búrigo 2014 ###
 
-if typeof module isnt 'undefined'
-    AdjacencyList = require('./../data-structures/adjacency-list').algCoffee.AdjacencyList
-else
-    AdjacencyList = algCoffee.AdjacencyList
-
 cycleDetection = (graph) ->
-    list = []
+    recursionStack = {}
     visited = {}
 
-    list.push(graph.vertices[0])
-
-    while list.length > 0
-        currentVertex = list.shift()
-        visited[currentVertex] = true
-        roommates = graph.getRoommates(currentVertex)
+    dfs = (vertex) ->
+        visited[vertex] = true
+        recursionStack[vertex] = true
+        roommates = graph.getRoommates(vertex)
 
         for target, weight of roommates
-            if visited[target]
+            if visited[target] is undefined and dfs(target)
                 return true
-            else
-                list.push(target)
+            else if recursionStack[target]
+                return true
+
+        delete recursionStack[vertex]
+        return false
+
+    for vertex in graph.vertices
+        if dfs(vertex)
+            return true
 
     return false
 
