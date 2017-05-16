@@ -8,7 +8,7 @@ algorithms.coffee
 
 > Can be used in either NodeJS (server-side JS) or in the Browser (client-side JS).
 
-> It uses [Mocha](http://visionmedia.github.io/mocha/) as the Testing Framework, [Chai](http://chaijs.com/) as the Assertion Library and [CoffeeLint](http://www.coffeelint.org/) as the Style Checker Library.
+> It uses [Mocha](http://mochajs.org/) as the Testing Framework, [Chai](http://chaijs.com/) as the Assertion Library and [CoffeeLint](http://www.coffeelint.org/) as the Style Checker Library.
 
 ## Algorithms implemented so far:
 Data Structures:
